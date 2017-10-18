@@ -1,6 +1,6 @@
 PIXI.utils.sayHello();
 
-var displayLog = false;
+var displayLog = true;
 
 var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, {
   antialias: false,
@@ -88,6 +88,7 @@ function setup() {
         break;
       case 81:
       case 37:
+      case 65:
         e.preventDefault();
         startMove('left');
         keyPressed = e.which;
@@ -100,6 +101,7 @@ function setup() {
         break;
       case 90:
       case 38:
+      case 87:
         e.preventDefault();
         startMove('up');
         keyPressed = e.which;
@@ -192,8 +194,6 @@ function moveMap() {
   mapRect.y += character.vy/
     ((visibleMapHeight/2)-(characterScale*(0.5*characterHeight/4)+mapBorder))*
     (mapHeight/2-visibleMapHeight/2);
-
-  console.log(mapRect.x+' / '+mapRect.y);
 
   mapTexture.frame = mapRect;
 }
