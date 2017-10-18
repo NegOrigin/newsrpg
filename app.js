@@ -46,7 +46,7 @@ var move;
 var moveState;
 var keyPressed;
 
-var movementSpeed = 4;
+var movementSpeed = 1;
 
 function setup() {
   //stage.interactive = true;
@@ -165,26 +165,28 @@ function actionMove() {
 
   moveState = 1;
 
-   characterRect.x += characterWidth/4;
-   character.texture.frame = characterRect;
+  characterRect.x += characterWidth/4;
+  character.texture.frame = characterRect;
 
-   character.x += character.vx;
-   character.y += character.vy;
+  character.x += character.vx;
+  character.y += character.vy;
 
-   moveMap();
+  moveMap();
 
-  move = setInterval(function() {
+  animation = setInterval(function() {
     characterRect.x + characterWidth/4 < characterWidth ?
       characterRect.x += characterWidth/4 : characterRect.x = 0;
     character.texture.frame = characterRect;
+  }, 1000/8);
 
+  move = setInterval(function() {
     if(!outOfBounds(character.x+character.vx, character.y+character.vy)) {
       character.x += character.vx;
       character.y += character.vy;
 
       moveMap();
     }
-  }, 75);
+  }, 1000/60);
 }
 
 function moveMap() {
@@ -201,6 +203,7 @@ function moveMap() {
 function stopMove() {
   consoleLog('stopMove');
 
+  clearInterval(animation);
   clearInterval(move);
 
   characterRect.x = 0;
