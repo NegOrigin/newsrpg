@@ -130,24 +130,28 @@ function startMove(direction) {
   switch(direction) {
     case 'down':
       characterRect.y = 0;
+      character.texture.frame = characterRect;
       character.vx = 0;
       outOfBounds(character.x, character.y + movementSpeed) ?
         character.vy = 0 : character.vy = movementSpeed;
       break;
     case 'left':
       characterRect.y = characterHeight/4;
+      character.texture.frame = characterRect;
       outOfBounds(character.x - movementSpeed, character.y) ?
         character.vx = 0 : character.vx = -movementSpeed;
       character.vy = 0;
       break;
     case 'right':
       characterRect.y = 2*characterHeight/4;
+      character.texture.frame = characterRect;
       outOfBounds(character.x + movementSpeed, character.y) ?
         character.vx = 0 : character.vx = movementSpeed;
       character.vy = 0;
       break;
     case 'up':
       characterRect.y = 3*characterHeight/4;
+      character.texture.frame = characterRect;
       character.vx = 0;
       outOfBounds(character.x, character.y - movementSpeed) ?
         character.vy = 0 : character.vy = -movementSpeed;
