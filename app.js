@@ -16,7 +16,7 @@ renderer.render(stage);
 
 renderer.view.style.position = "absolute";
 renderer.view.style.display = "block";
-renderer.autoResize = true;
+//renderer.autoResize = true;
 
 PIXI.loader
   .add('mapPic', 'images/map.png')
@@ -25,14 +25,16 @@ PIXI.loader
 
 var characterWidth = 512;
 var characterHeight = 768;
-var characterScale = 0.5;
+var characterScale = 0.3;
 
 var mapWidth = 2000;
 var mapHeight = 1124;
 var mapBorder = 32;
 
-var visibleMapWidth = 700;
-var visibleMapHeight = 500;
+var visibleMapWidth = mapWidth/2;
+var visibleMapHeight = mapHeight/2;
+
+var visibleMapScreenPortion = 0.7;
 
 var map;
 var mapRect;
@@ -50,6 +52,10 @@ var movementSpeed = 1;
 
 function setup() {
   //stage.interactive = true;
+
+  stage.scale.set(renderer.screen.width/visibleMapWidth*visibleMapScreenPortion,
+    renderer.screen.width/visibleMapWidth*visibleMapScreenPortion);
+  stage.y = (renderer.screen.height-stage.scale.y*visibleMapHeight)/2;
 
   mapRect = new PIXI.Rectangle(0, 0, visibleMapWidth, visibleMapHeight);
   mapRect.x = 0.5*(mapWidth-visibleMapWidth);
@@ -77,6 +83,13 @@ function setup() {
   stage.addChild(character);
 
   animationLoop();
+
+  window.onresize = function (event) {
+    renderer.resize(window.innerWidth, window.innerHeight);
+    stage.scale.set(renderer.screen.width/visibleMapWidth*visibleMapScreenPortion,
+      renderer.screen.width/visibleMapWidth*visibleMapScreenPortion);
+    stage.y = (renderer.screen.height-stage.scale.y*visibleMapHeight)/2;
+  }
 
   window.addEventListener('keydown', function(e) {
     switch(e.which) {
