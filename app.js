@@ -20,6 +20,8 @@ renderer.view.style.display = "block";
 
 PIXI.loader
   .add('mapPic', 'images/map.png')
+  .add('mapTopPic', 'images/map.png')
+  .add('mapBottomPic', 'images/map.png')
   .add('characterSheet', 'images/characterSheet4x.png')
   .load(setup);
 
@@ -27,43 +29,67 @@ var characterWidth = 512;
 var characterHeight = 768;
 var characterScale = 0.3;
 
+var character;
+var characterRect;
+var characterTexture;
+
 var mapWidth = 2000;
 var mapHeight = 1124;
 var mapBorder = 32;
 
-var visibleMapWidth = mapWidth/2;
-var visibleMapHeight = mapHeight/2;
-
 var visibleMapScreenPortion = 0.7;
+
+var usefulMapWidth = mapWidth/2;
+var usefulMapHeight = mapHeight/2;
 
 var map;
 var mapRect;
 var mapTexture;
 
-var character;
-var characterRect;
-var characterTexture;
+var mapTop;
+var mapTopRect;
+var mapTopTexture;
+
+var mapBottom;
+var mapBottomRect;
+var mapBottomTexture;
 
 var move;
 var moveState;
 var keyPressed;
 
-var movementSpeed = 1;
+var movementSpeed = 1.5;
 
 function setup() {
   //stage.interactive = true;
 
-  stage.scale.set(renderer.screen.width/visibleMapWidth*visibleMapScreenPortion,
-    renderer.screen.width/visibleMapWidth*visibleMapScreenPortion);
-  stage.y = (renderer.screen.height-stage.scale.y*visibleMapHeight)/2;
+  stage.scale.set(renderer.screen.width/usefulMapWidth*visibleMapScreenPortion,
+    renderer.screen.width/usefulMapWidth*visibleMapScreenPortion);
 
-  mapRect = new PIXI.Rectangle(0, 0, visibleMapWidth, visibleMapHeight);
-  mapRect.x = 0.5*(mapWidth-visibleMapWidth);
-  mapRect.y = 0.5*(mapHeight-visibleMapHeight);
+  mapRect = new PIXI.Rectangle(0.5*(mapWidth-usefulMapWidth), 0.5*(mapHeight-usefulMapHeight),
+    usefulMapWidth, usefulMapHeight);
   mapTexture = PIXI.loader.resources['mapPic'].texture;
   mapTexture.frame = mapRect;
 
   map = new PIXI.Sprite(mapTexture);
+  map.y = (renderer.screen.height-stage.scale.y*usefulMapHeight)/(2*stage.scale.y);
+
+  mapTopRect = new PIXI.Rectangle(mapRect.x, 0,
+    usefulMapWidth, mapRect.y);
+  mapTopTexture = PIXI.loader.resources['mapTopPic'].texture;
+  mapTopTexture.frame = mapTopRect;
+
+  mapTop = new PIXI.Sprite(mapTopTexture);
+  mapTop.anchor.set(0, 1);
+  mapTop.y = map.y;
+
+  mapBottomRect = new PIXI.Rectangle(mapRect.x, mapRect.y+usefulMapHeight,
+    usefulMapWidth, mapRect.y);
+  mapBottomTexture = PIXI.loader.resources['mapBottomPic'].texture;
+  mapBottomTexture.frame = mapBottomRect;
+
+  mapBottom = new PIXI.Sprite(mapBottomTexture);
+  mapBottom.y = map.y+usefulMapHeight;
 
   characterRect = new PIXI.Rectangle(0, 0, characterWidth/4, characterHeight/4);
   characterTexture = PIXI.loader.resources['characterSheet'].texture;
@@ -72,23 +98,31 @@ function setup() {
   character = new PIXI.Sprite(characterTexture);
   character.anchor.set(0.5, 1);
   character.scale.set(characterScale, characterScale);
-
-  character.x = visibleMapWidth/2;
-  character.y = (visibleMapHeight+characterScale*(character.anchor.y*characterHeight/4))/2;
-
+  character.x = usefulMapWidth/2;
+  character.y = map.y+(usefulMapHeight+characterScale*(character.anchor.y*characterHeight/4))/2;
   character.vx = 0;
   character.vy = 0;
 
   stage.addChild(map);
+  stage.addChild(mapTop);
+  stage.addChild(mapBottom);
   stage.addChild(character);
 
   animationLoop();
 
   window.onresize = function (event) {
     renderer.resize(window.innerWidth, window.innerHeight);
-    stage.scale.set(renderer.screen.width/visibleMapWidth*visibleMapScreenPortion,
-      renderer.screen.width/visibleMapWidth*visibleMapScreenPortion);
-    stage.y = (renderer.screen.height-stage.scale.y*visibleMapHeight)/2;
+
+    stage.scale.set(renderer.screen.width/usefulMapWidth*visibleMapScreenPortion,
+      renderer.screen.width/usefulMapWidth*visibleMapScreenPortion);
+
+    character.y -= map.y;
+    map.y = (renderer.screen.height-stage.scale.y*usefulMapHeight)/(2*stage.scale.y);
+    character.y += map.y;
+    mapTop.y = map.y;
+    mapTopRect.y = mapRect.y-mapTopRect.height;
+    mapBottom.y = map.y+usefulMapHeight;
+    mapBottomRect.y = mapRect.y+usefulMapHeight;
   }
 
   window.addEventListener('keydown', function(e) {
@@ -208,13 +242,22 @@ function actionMove() {
 
 function moveMap() {
   mapRect.x += character.vx/
-    ((visibleMapWidth/2)-(characterScale*(0.5*characterWidth/4)+mapBorder))*
-    (mapWidth/2-visibleMapWidth/2);
+    ((usefulMapWidth/2)-(characterScale*(0.5*characterWidth/4)+mapBorder))*
+    (mapWidth/2-usefulMapWidth/2);
   mapRect.y += character.vy/
-    ((visibleMapHeight/2)-(characterScale*(0.5*characterHeight/4)+mapBorder))*
-    (mapHeight/2-visibleMapHeight/2);
+    ((usefulMapHeight/2)-(characterScale*(0.5*characterHeight/4)+mapBorder))*
+    (mapHeight/2-usefulMapHeight/2);
+
+  mapTopRect.x = mapRect.x;
+  mapTopRect.height = mapRect.y;
+
+  mapBottomRect.x = mapRect.x;
+  mapBottomRect.y = mapRect.y+usefulMapHeight;
+  mapBottomRect.height = mapHeight-mapBottomRect.y;
 
   mapTexture.frame = mapRect;
+  mapTopTexture.frame = mapTopRect;
+  mapBottomTexture.frame = mapBottomRect;
 }
 
 function stopMove() {
@@ -234,9 +277,9 @@ function stopMove() {
 
 function outOfBounds(x, y) {
   if (x < characterScale*(character.anchor.x*characterWidth/4)+mapBorder
-  || y < characterScale*(character.anchor.y*characterHeight/4)+mapBorder
-  || x > visibleMapWidth-(characterScale*((1-character.anchor.x)*characterWidth/4)+mapBorder)
-  || y > visibleMapHeight-(characterScale*((1-character.anchor.y)*characterHeight/4)+mapBorder)) {
+  || y-map.y < characterScale*(character.anchor.y*characterHeight/4)+mapBorder
+  || x > usefulMapWidth-(characterScale*((1-character.anchor.x)*characterWidth/4)+mapBorder)
+  || y-map.y > usefulMapHeight-(characterScale*((1-character.anchor.y)*characterHeight/4)+mapBorder)) {
     consoleLog('out of bounds');
     return true;
   } else {
