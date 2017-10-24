@@ -1,6 +1,6 @@
 PIXI.utils.sayHello();
 
-var displayLog = true;
+var displayLog = false;
 
 var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, {
   antialias: false,
@@ -22,7 +22,8 @@ PIXI.loader
   .add('mapPic', 'images/map.png')
   .add('mapTopPic', 'images/map.png')
   .add('mapBottomPic', 'images/map.png')
-  .add('characterSheet', 'images/characterSheet4x.png')
+  .add('characterSheetEarth', 'images/characterSheet4x.png')
+  .add('characterSheetWater', 'images/characterSheet4x2.png')
   .load(setup);
 
 var characterWidth = 512;
@@ -32,6 +33,8 @@ var characterScale = 0.3;
 var character;
 var characterRect;
 var characterTexture;
+var characterTextureEarth;
+var characterTextureWater;
 
 var mapWidth = 2000;
 var mapHeight = 1124;
@@ -59,6 +62,9 @@ var moveState;
 var keyPressed;
 
 var movementSpeed = 1.5;
+
+var pointsTestPolygon = [0,mapHeight/2, mapWidth/4,mapHeight/4, mapWidth/2,mapHeight/2 , mapWidth/4,3*mapHeight/4]
+var testPolygon = new PIXI.Polygon(pointsTestPolygon);
 
 function setup() {
   //stage.interactive = true;
@@ -92,7 +98,9 @@ function setup() {
   mapBottom.y = map.y+usefulMapHeight;
 
   characterRect = new PIXI.Rectangle(0, 0, characterWidth/4, characterHeight/4);
-  characterTexture = PIXI.loader.resources['characterSheet'].texture;
+  characterTextureEarth = PIXI.loader.resources['characterSheetEarth'].texture;
+  characterTextureWater = PIXI.loader.resources['characterSheetWater'].texture;
+  characterTexture = characterTextureEarth;
   characterTexture.frame = characterRect;
 
   character = new PIXI.Sprite(characterTexture);
@@ -102,6 +110,8 @@ function setup() {
   character.y = map.y+(usefulMapHeight+characterScale*(character.anchor.y*characterHeight/4))/2;
   character.vx = 0;
   character.vy = 0;
+
+  testPosition(mapRect.x+character.x, mapRect.y+character.y);
 
   stage.addChild(map);
   stage.addChild(mapTop);
@@ -223,6 +233,7 @@ function actionMove() {
   character.y += character.vy;
 
   moveMap();
+  testPosition(mapRect.x+character.x, mapRect.y+character.y);
 
   animation = setInterval(function() {
     characterRect.x + characterWidth/4 < characterWidth ?
@@ -236,6 +247,7 @@ function actionMove() {
       character.y += character.vy;
 
       moveMap();
+      testPosition(mapRect.x+character.x, mapRect.y+character.y);
     }
   }, 1000/60);
 }
@@ -285,6 +297,15 @@ function outOfBounds(x, y) {
   } else {
     return false;
   }
+}
+
+function testPosition(x, y) {
+  if(testPolygon.contains(x, y))
+    character.texture = characterTextureWater;
+  else
+    character.texture = characterTextureEarth;
+
+  character.texture.frame = characterRect;
 }
 
 function consoleLog(message) {
