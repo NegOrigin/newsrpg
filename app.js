@@ -67,8 +67,6 @@ var movementSpeed = 1.5;
 var pointsTestPolygon = [1598,976,1732,960,1720,638,1592,750]
 var testPolygon = new PIXI.Polygon(pointsTestPolygon);
 
-var graphics = new PIXI.Graphics();
-
 function setup() {
   //stage.interactive = true;
 
@@ -116,16 +114,9 @@ function setup() {
 
   testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
 
-  graphics.beginFill(0x7fff00);
-  graphics.drawPolygon(pointsTestPolygon);
-  graphics.endFill();
-  graphics.x = -(mapWidth-usefulMapWidth)/visibleMapRatio;
-  graphics.y = map.y-(mapHeight-usefulMapHeight)/visibleMapRatio;
-
   stage.addChild(map);
   stage.addChild(mapTop);
   stage.addChild(mapBottom);
-  stage.addChild(graphics);
   stage.addChild(character);
 
   animationLoop();
@@ -137,10 +128,8 @@ function setup() {
       renderer.screen.width/usefulMapWidth*visibleMapScreenPortion);
 
     character.y -= map.y;
-    graphics.y -= map.y;
     map.y = (renderer.screen.height-stage.scale.y*usefulMapHeight)/(2*stage.scale.y);
     character.y += map.y;
-    graphics.y += map.y;
     mapTop.y = map.y;
     mapTopRect.y = mapRect.y-mapTopRect.height;
     mapBottom.y = map.y+usefulMapHeight;
@@ -282,13 +271,6 @@ function moveMap() {
   mapTexture.frame = mapRect;
   mapTopTexture.frame = mapTopRect;
   mapBottomTexture.frame = mapBottomRect;
-
-  graphics.x -= character.vx/
-    ((usefulMapWidth/2)-(characterScale*(0.5*characterWidth/4)+mapBorder))*
-    (mapWidth/2-usefulMapWidth/2);
-  graphics.y -= character.vy/
-    ((usefulMapHeight/2)-(characterScale*(0.5*characterHeight/4)+mapBorder))*
-    (mapHeight/2-usefulMapHeight/2);
 }
 
 function stopMove() {
