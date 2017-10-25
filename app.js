@@ -42,8 +42,9 @@ var mapBorder = 32;
 
 var visibleMapScreenPortion = 0.7;
 
-var usefulMapWidth = mapWidth/2;
-var usefulMapHeight = mapHeight/2;
+var visibleMapRatio = 2;
+var usefulMapWidth = mapWidth/visibleMapRatio;
+var usefulMapHeight = mapHeight/visibleMapRatio;
 
 var map;
 var mapRect;
@@ -63,8 +64,10 @@ var keyPressed;
 
 var movementSpeed = 1.5;
 
-var pointsTestPolygon = [0,mapHeight/2, mapWidth/4,mapHeight/4, mapWidth/2,mapHeight/2 , mapWidth/4,3*mapHeight/4]
+var pointsTestPolygon = [1598,976,1732,960,1720,638,1592,750]
 var testPolygon = new PIXI.Polygon(pointsTestPolygon);
+
+var graphics = new PIXI.Graphics();
 
 function setup() {
   //stage.interactive = true;
@@ -111,11 +114,18 @@ function setup() {
   character.vx = 0;
   character.vy = 0;
 
-  testPosition(mapRect.x+character.x, mapRect.y+character.y);
+  testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
+
+  graphics.beginFill(0x7fff00);
+  graphics.drawPolygon(pointsTestPolygon);
+  graphics.endFill();
+  graphics.x = -(mapWidth-usefulMapWidth)/visibleMapRatio;
+  graphics.y = map.y-(mapHeight-usefulMapHeight)/visibleMapRatio;
 
   stage.addChild(map);
   stage.addChild(mapTop);
   stage.addChild(mapBottom);
+  stage.addChild(graphics);
   stage.addChild(character);
 
   animationLoop();
@@ -127,8 +137,10 @@ function setup() {
       renderer.screen.width/usefulMapWidth*visibleMapScreenPortion);
 
     character.y -= map.y;
+    graphics.y -= map.y;
     map.y = (renderer.screen.height-stage.scale.y*usefulMapHeight)/(2*stage.scale.y);
     character.y += map.y;
+    graphics.y += map.y;
     mapTop.y = map.y;
     mapTopRect.y = mapRect.y-mapTopRect.height;
     mapBottom.y = map.y+usefulMapHeight;
@@ -233,7 +245,7 @@ function actionMove() {
   character.y += character.vy;
 
   moveMap();
-  testPosition(mapRect.x+character.x, mapRect.y+character.y);
+  testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
 
   animation = setInterval(function() {
     characterRect.x + characterWidth/4 < characterWidth ?
@@ -247,7 +259,7 @@ function actionMove() {
       character.y += character.vy;
 
       moveMap();
-      testPosition(mapRect.x+character.x, mapRect.y+character.y);
+      testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
     }
   }, 1000/60);
 }
@@ -270,6 +282,13 @@ function moveMap() {
   mapTexture.frame = mapRect;
   mapTopTexture.frame = mapTopRect;
   mapBottomTexture.frame = mapBottomRect;
+
+  graphics.x -= character.vx/
+    ((usefulMapWidth/2)-(characterScale*(0.5*characterWidth/4)+mapBorder))*
+    (mapWidth/2-usefulMapWidth/2);
+  graphics.y -= character.vy/
+    ((usefulMapHeight/2)-(characterScale*(0.5*characterHeight/4)+mapBorder))*
+    (mapHeight/2-usefulMapHeight/2);
 }
 
 function stopMove() {
