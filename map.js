@@ -2,13 +2,17 @@ PIXI.utils.sayHello();
 
 var displayLog = false;
 
-var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, {
+var rendererWidthScreenPortion = 0.6;
+var rendererHeightScreenPortion = 0.6;
+
+var renderer = PIXI.autoDetectRenderer(window.innerWidth*rendererWidthScreenPortion,
+  window.innerHeight*rendererHeightScreenPortion, {
   antialias: false,
   transparent: true,
   resolution: 1
 });
 
-document.querySelector('#display').appendChild(renderer.view);
+document.querySelector('#map').appendChild(renderer.view);
 
 var stage = new PIXI.Container();
 
@@ -19,9 +23,9 @@ renderer.view.style.display = "block";
 //renderer.autoResize = true;
 
 PIXI.loader
-  .add('mapPic', 'images/map.png')
-  .add('mapTopPic', 'images/map.png')
-  .add('mapBottomPic', 'images/map.png')
+  .add('mapPic', 'images/worldMap.jpg')
+  .add('mapTopPic', 'images/worldMap.jpg')
+  .add('mapBottomPic', 'images/worldMap.jpg')
   .add('characterSheetEarth', 'images/characterSheet4x.png')
   .add('characterSheetWater', 'images/characterSheet4x2.png')
   .load(setup);
@@ -36,13 +40,13 @@ var characterTexture;
 var characterTextureEarth;
 var characterTextureWater;
 
-var mapWidth = 2000;
-var mapHeight = 1124;
+var mapWidth = 5866;
+var mapHeight = 3144;
 var mapBorder = 32;
 
-var visibleMapScreenPortion = 0.7;
+var visibleMapScreenPortion = 1;
 
-var visibleMapRatio = 2;
+var visibleMapRatio = 4;
 var usefulMapWidth = mapWidth/visibleMapRatio;
 var usefulMapHeight = mapHeight/visibleMapRatio;
 
@@ -64,8 +68,16 @@ var keyPressed;
 
 var movementSpeed = 1.5;
 
-var pointsTestPolygon = [1598,976,1732,960,1720,638,1592,750]
+var pointsTestPolygon = [1598,976,1732,960,1720,638,1592,750];
 var testPolygon = new PIXI.Polygon(pointsTestPolygon);
+
+var pointsCanada = [1405,423,1238,438,1067,583,1091,605,1124,597,1120,639,1132,654,1094,690,1077,745,1116,785,1136,771,1504,770,1568,793,1600,769,1637,812,1653,843,1620,891,1733,856,1751,843,1798,840,1853,800,1864,804,1855,827,1873,864,1975,822,1963,784,2019,810,2063,813,2080,797,2074,701,2020,649,2018,587,2105,487,2074,429,2002,381,2008,360,2272,272,2171,264,1981,276,1704,319,1558,347];
+var Canada = new PIXI.Polygon(pointsCanada);
+
+var pointsFrance = [2725,777,2778,776,2774,761,2792,766,2808,758,2820,740,2833,736,2862,754,2906,770,2899,798,2881,813,2891,819,2891,838,2897,857,2878,872,2856,867,2835,872,2835,882,2777,870,2774,812];
+var France = new PIXI.Polygon(pointsFrance);
+
+var zoneName = new PIXI.Text("", {fontFamily: "Arial", fontSize: 32, fill: "black"});
 
 function setup() {
   //stage.interactive = true;
@@ -112,17 +124,21 @@ function setup() {
   character.vx = 0;
   character.vy = 0;
 
+  zoneName.position.set(usefulMapWidth, 0);
+
   testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
 
   stage.addChild(map);
   stage.addChild(mapTop);
   stage.addChild(mapBottom);
   stage.addChild(character);
+  stage.addChild(zoneName);
 
   animationLoop();
 
   window.onresize = function (event) {
-    renderer.resize(window.innerWidth, window.innerHeight);
+    renderer.resize(window.innerWidth*rendererWidthScreenPortion, 
+      window.innerHeight*rendererHeightScreenPortion);
 
     stage.scale.set(renderer.screen.width/usefulMapWidth*visibleMapScreenPortion,
       renderer.screen.width/usefulMapWidth*visibleMapScreenPortion);
@@ -301,12 +317,31 @@ function outOfBounds(x, y) {
 }
 
 function testPosition(x, y) {
-  if(testPolygon.contains(x, y))
+  /*if(testPolygon.contains(x, y)) {
     character.texture = characterTextureWater;
-  else
+    displayZone("Water");
+  } else {
     character.texture = characterTextureEarth;
+    displayZone("Earth");
+  }*/
+
+
+  if(Canada.contains(x, y)) {
+    character.texture = characterTextureWater;
+    displayZone("Ecole");
+  } else if(France.contains(x, y)) {
+    character.texture = characterTextureWater;
+    displayZone("Maison");
+  } else {
+    character.texture = characterTextureEarth;
+    displayZone("Quelque part dans le monde");
+  }
 
   character.texture.frame = characterRect;
+}
+
+function displayZone(name) {
+  zoneName.text = name;
 }
 
 function consoleLog(message) {

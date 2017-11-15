@@ -1,8 +1,16 @@
 body {
   margin: 0;
   padding: 0;
+  background: #FAFAFA;
 }
 
-#display>* {
-  background: Chartreuse;
+#map {
+padding-top: 30vh;
+padding-left: 2vw;
+}
+
+#map>* {
+  background: #7AC9D6;
+  border: 0.2vw solid #454545;
+  border-radius: 2vw;
 }
