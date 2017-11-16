@@ -1,12 +1,51 @@
 body {
+  background: #FAFAFA;
   margin: 0;
   padding: 0;
-  background: #FAFAFA;
+  font-family: sans-serif;
+}
+
+#menu {
+  margin-top: 15vh;
+}
+
+#filters {
+  background: #454545;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 5vh;
+}
+
+#filters li {
+  margin: 0 -2px;
+  display: inline;
+  list-style: none;
+}
+
+#filters a {
+  padding: 0 2vh;
+  height: 5vh;
+  line-height: 5vh;
+  display: inline-block;
+  color: #FAFAFA;
+  font-size: 2vh;
+  text-decoration: none;
+  border-left: 1px solid #555;
+  border-right: 1px solid #888;
+}
+
+#filters :first-child a {
+  border-left: 0;
+}
+
+#filters :last-child a {
+  border-right: 0;
 }
 
 #map {
-padding-top: 30vh;
-padding-left: 2vw;
+  margin-top: 4vh;
+  margin-left: 2vw;
 }
 
 #map>* {

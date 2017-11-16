@@ -3,7 +3,7 @@ PIXI.utils.sayHello();
 var displayLog = false;
 
 var rendererWidthScreenPortion = 0.6;
-var rendererHeightScreenPortion = 0.6;
+var rendererHeightScreenPortion = 0.71;
 
 var renderer = PIXI.autoDetectRenderer(window.innerWidth*rendererWidthScreenPortion,
   window.innerHeight*rendererHeightScreenPortion, {
@@ -67,9 +67,6 @@ var moveState;
 var keyPressed;
 
 var movementSpeed = 1.5;
-
-var pointsTestPolygon = [1598,976,1732,960,1720,638,1592,750];
-var testPolygon = new PIXI.Polygon(pointsTestPolygon);
 
 var pointsCanada = [1405,423,1238,438,1067,583,1091,605,1124,597,1120,639,1132,654,1094,690,1077,745,1116,785,1136,771,1504,770,1568,793,1600,769,1637,812,1653,843,1620,891,1733,856,1751,843,1798,840,1853,800,1864,804,1855,827,1873,864,1975,822,1963,784,2019,810,2063,813,2080,797,2074,701,2020,649,2018,587,2105,487,2074,429,2002,381,2008,360,2272,272,2171,264,1981,276,1704,319,1558,347];
 var Canada = new PIXI.Polygon(pointsCanada);
@@ -137,7 +134,7 @@ function setup() {
   animationLoop();
 
   window.onresize = function (event) {
-    renderer.resize(window.innerWidth*rendererWidthScreenPortion, 
+    renderer.resize(window.innerWidth*rendererWidthScreenPortion,
       window.innerHeight*rendererHeightScreenPortion);
 
     stage.scale.set(renderer.screen.width/usefulMapWidth*visibleMapScreenPortion,
@@ -317,15 +314,6 @@ function outOfBounds(x, y) {
 }
 
 function testPosition(x, y) {
-  /*if(testPolygon.contains(x, y)) {
-    character.texture = characterTextureWater;
-    displayZone("Water");
-  } else {
-    character.texture = characterTextureEarth;
-    displayZone("Earth");
-  }*/
-
-
   if(Canada.contains(x, y)) {
     character.texture = characterTextureWater;
     displayZone("Ecole");
