@@ -53,3 +53,10 @@ body {
   border: 0.2vw solid #454545;
   border-radius: 2vw;
 }
+
+#footer {
+  background: #454545;
+  margin-top: 80vh;
+  text-align: center;
+  height: 15vh;
+}
