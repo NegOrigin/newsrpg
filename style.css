@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Northwood High';
+  src: url('fonts/Northwood High.ttf');
+}
+
 body {
   background: #FAFAFA;
   margin: 0;
@@ -5,8 +10,20 @@ body {
   font-family: sans-serif;
 }
 
+#title {
+  text-align: center;
+  height: 15vh;
+  font-family: 'Northwood High';
+  font-size: 5vh;
+}
+
+#title h1 {
+  margin: 0;
+  line-height: 15vh;
+}
+
 #menu {
-  margin-top: 15vh;
+
 }
 
 #filters {
@@ -18,29 +35,22 @@ body {
 }
 
 #filters li {
-  margin: 0 -2px;
   display: inline;
   list-style: none;
 }
 
-#filters a {
+#filters p {
+  margin: 0;
   padding: 0 2vh;
-  height: 5vh;
   line-height: 5vh;
   display: inline-block;
   color: #FAFAFA;
   font-size: 2vh;
-  text-decoration: none;
-  border-left: 1px solid #555;
-  border-right: 1px solid #888;
+  cursor: pointer;
 }
 
-#filters :first-child a {
-  border-left: 0;
-}
-
-#filters :last-child a {
-  border-right: 0;
+#filters :hover p {
+  background: #656565;
 }
 
 #map {
@@ -54,9 +64,21 @@ body {
   border-radius: 2vw;
 }
 
+#newslist {
+
+}
+
 #footer {
   background: #454545;
   margin-top: 80vh;
+  padding-top: 4vh;
   text-align: center;
   height: 15vh;
+}
+
+#footer a {
+  line-height: 4vh;
+  color: #BABABA;
+  font-size: 1.8vh;
+  text-decoration: none;
 }

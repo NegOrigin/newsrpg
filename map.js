@@ -74,8 +74,6 @@ var Canada = new PIXI.Polygon(pointsCanada);
 var pointsFrance = [2725,777,2778,776,2774,761,2792,766,2808,758,2820,740,2833,736,2862,754,2906,770,2899,798,2881,813,2891,819,2891,838,2897,857,2878,872,2856,867,2835,872,2835,882,2777,870,2774,812];
 var France = new PIXI.Polygon(pointsFrance);
 
-var zoneName = new PIXI.Text("", {fontFamily: "Arial", fontSize: 32, fill: "black"});
-
 function setup() {
   //stage.interactive = true;
 
@@ -121,15 +119,12 @@ function setup() {
   character.vx = 0;
   character.vy = 0;
 
-  zoneName.position.set(usefulMapWidth, 0);
-
   testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
 
   stage.addChild(map);
   stage.addChild(mapTop);
   stage.addChild(mapBottom);
   stage.addChild(character);
-  stage.addChild(zoneName);
 
   animationLoop();
 
@@ -329,7 +324,7 @@ function testPosition(x, y) {
 }
 
 function displayZone(name) {
-  zoneName.text = name;
+  consoleLog(name);
 }
 
 function consoleLog(message) {
