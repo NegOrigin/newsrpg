@@ -1,6 +1,6 @@
 PIXI.utils.sayHello();
 
-var displayLog = false;
+var displayLog = true;
 
 var rendererWidthScreenPortion = 0.6;
 var rendererHeightScreenPortion = 0.71;
