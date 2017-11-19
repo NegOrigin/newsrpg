@@ -1,6 +1,6 @@
 PIXI.utils.sayHello();
 
-var displayLog = true;
+var displayLog = false;
 
 var rendererWidthScreenPortion = 0.6;
 var rendererHeightScreenPortion = 0.71;
@@ -73,6 +73,8 @@ var Canada = new PIXI.Polygon(pointsCanada);
 
 var pointsFrance = [2725,777,2778,776,2774,761,2792,766,2808,758,2820,740,2833,736,2862,754,2906,770,2899,798,2881,813,2891,819,2891,838,2897,857,2878,872,2856,867,2835,872,2835,882,2777,870,2774,812];
 var France = new PIXI.Polygon(pointsFrance);
+
+var country;
 
 function setup() {
   //stage.interactive = true;
@@ -311,20 +313,35 @@ function outOfBounds(x, y) {
 function testPosition(x, y) {
   if(Canada.contains(x, y)) {
     character.texture = characterTextureWater;
-    displayZone("Ecole");
+    changeCountry("Ecole");
   } else if(France.contains(x, y)) {
     character.texture = characterTextureWater;
-    displayZone("Maison");
+    changeCountry("Maison");
   } else {
     character.texture = characterTextureEarth;
-    displayZone("Quelque part dans le monde");
+    changeCountry("CAKE");
   }
 
   character.texture.frame = characterRect;
 }
 
 function displayZone(name) {
+  changeCountry(name);
+}
+
+function changeCountry(name)
+{
   consoleLog(name);
+  country=name;
+
+  if(country==="CAKE")
+  {
+    name="Pas de pays reconnu";
+  }
+  document.getElementById('infoCountry').innerHTML=name;
+
+  emptyNewsList();
+  chooseArticleContent();
 }
 
 function consoleLog(message) {

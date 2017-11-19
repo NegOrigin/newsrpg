@@ -1,35 +1,18 @@
 
 //fichier pour gerer le menu avec les filtres par filter de news
 
-var displayLog = true;
+var displayLog2 = true;
 
-//TODO remplacer par un array
-var filterPolitique = 1;
-var filterSport = 1;
-var filterSciences = 1;
-
-var filter=[
-	[1,2],
-	[3,4],
-	[5,6],
-	[7,8]
-];
-
-filter[0][0]="filterPolitique";
-filter[0][1]=1;
-
-filter[1][0]="filterSport";
-filter[1][1]=1;
-
-filter[2][0]="filterSciences";
-filter[2][1]=1;
-
-filter[3][0]="filterEconomie";
-filter[3][1]=1;
+var filter=[];
+filter['politique']=true;
+filter['sport']=true;
+filter['sciences']=true;
+filter['eonomie']=true;
 
 
-function consoleLog(message) {
-  if (displayLog)
+function consoleLog2(message) 
+{
+  if (displayLog2)
     console.log(message);
 }
 
@@ -37,29 +20,37 @@ function launch()
 {
 	updateFilterVar();
 
-	checkButton(filterPolitique, 'filterPolitique');
-	checkButton(filterSport, 'filterSport');
-	checkButton(filterSciences, 'filterSciences');
+	checkButton(filter['politique'], 'filterPolitique');
+	checkButton(filter['sport'], 'filterSport');
+	checkButton(filter['sciences'], 'filterSciences');
+	checkButton(filter['economie'], 'filterEconomie');
 
 
 	//eventListener sur les boutons des filtres
 	document.getElementById('filterPolitique').addEventListener("click", function() {
-		filterPolitique=switchButton(filterPolitique, 'filterPolitique');
-		checkButton(filterPolitique, 'filterPolitique');
+		filter['politique']=switchButton(filter['politique'], 'filterPolitique');
+		checkButton(filter['politique'], 'filterPolitique');
 		emptyNewsList();
 		chooseArticleContent();
 	});
 
 	document.getElementById('filterSport').addEventListener("click", function() {
-		filterSport=switchButton(filterSport, 'filterSport');
-		checkButton(filterSport, 'filterSport');
+		filter['sport']=switchButton(filter['sport'], 'filterSport');
+		checkButton(filter['sport'], 'filterSport');
 		emptyNewsList();
 		chooseArticleContent();
 	});
 
 	document.getElementById('filterSciences').addEventListener("click", function() {
-		filterSciences=switchButton(filterSciences, 'filterSciences');
-		checkButton(filterSciences, 'filterSciences');
+		filter['sciences']=switchButton(filter['sciences'], 'filterSciences');
+		checkButton(filter['sciences'], 'filterSciences');
+		emptyNewsList();
+		chooseArticleContent();
+	});
+
+	document.getElementById('filterEconomie').addEventListener("click", function() {
+		filter['economie']=switchButton(filter['economie'], 'filterEconomie');
+		checkButton(filter['economie'], 'filterEconomie');
 		emptyNewsList();
 		chooseArticleContent();
 	});
@@ -69,14 +60,14 @@ function launch()
 //change la valeur d'un filtre et le cookie du bouton qui correspond
 function switchButton(filterButton, id)
 {
-	if(filterButton==0)
+	if(!filterButton)
 	{
-		filterButton=1;
+		filterButton=true;
 		setCookie(id,1,7);
 	}
 	else
 	{
-		filterButton=0;
+		filterButton=false;
 		setCookie(id,0,7);
 	}
 
@@ -86,7 +77,7 @@ function switchButton(filterButton, id)
 //met à jour le css d'un bouton
 function checkButton(filterButton, id)
 {
-	if(filterButton==0)
+	if(!filterButton)
 	{
 		document.getElementById(id).style.color="red";
 	}
@@ -127,32 +118,25 @@ function getCookie(cname) {
 //récupère les cookies et met à jour les var globales
 function updateFilterVar()
 {
-		if(getCookie('filterPolitique')=="0")
-	{
-		filterPolitique=0;
-	}
+	if(getCookie('filterPolitique')=="0")
+		filter['politique']=false;
 	else
-	{
-		filterPolitique=1;
-	}
+		filter['politique']=true;
 
 	if(getCookie('filterSport')=="0")
-	{
-		filterSport=0;
-	}
+		filter['sport']=false;
 	else
-	{
-		filterSport=1;
-	}
+		filter['sport']=true;
 
 	if(getCookie('filterSciences')=="0")
-	{
-		filterSciences=0;
-	}
+		filter['sciences']=false;
 	else
-	{
-		filterSciences=1;
-	}
+		filter['sciences']=true;
+
+	if(getCookie('filterEconomie')=="0")
+		filter['economie']=false;
+	else
+		filter['economie']=true;
 }
 
 

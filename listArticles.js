@@ -12,20 +12,33 @@ function addArticle(title, text)
 
 function chooseArticleContent()
 {
-	if(filterPolitique==1)
+	if(country==="CAKE") //pas de pays reconnu
 	{
-		addArticle("titre", "plein de contenu trop interessant sur la politique");
+		addArticle("titre", "Pas de pays, pas d'article ");
 	}
+	else
+	{
+		if(filter['politique'])
+		{
+			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
+		}
 
-	if(filterSport==1)
-	{
-		addArticle("titre", "plein de contenu trop interessant sur le sport");
-	}
+		if(filter['sport'])
+		{
+			addArticle("Sport", "Plein de contenu trop interessant sur le sport dans le pays " + country);
+		}
 
-	if(filterSciences==1)
-	{
-		addArticle("titre", "plein de contenu trop interessant sur la science");
+		if(filter['sciences'])
+		{
+			addArticle("Sciences", "Plein de contenu trop interessant sur la science dans le pays " + country);
+		}
+
+		if(filter['economie'])
+		{
+			addArticle("Economie", "Plein de contenu trop interessant sur l'economie dans le pays " + country);
+		}
 	}
+	
 }
 
 function emptyNewsList()

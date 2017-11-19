@@ -81,15 +81,15 @@ body {
 
 #newsFrame {
   margin-top: 4vh;
-  border: 0.2vw solid #454545;
-  border-radius: 2vw;
+  /*border: 0.2vw solid #454545;
+  border-radius: 2vw;*/
   flex: 1;
 
 }
 
 #newsList {
   list-style-type: none;
-  padding: 0.5vw;
+  padding: 0;
   margin : 0;
 }
 
@@ -101,6 +101,14 @@ body {
   background: #454545;
   color: #FAFAFA;
 
+}
+
+#infoCountry {
+  padding: 0.3vw;
+  padding-bottom: 0.1vw;
+  margin: 0.2vw;
+  border: 0.2vw solid black;
+  background: red;
 }
 
 /*FOOTER*/
