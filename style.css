@@ -56,19 +56,11 @@ body {
   background: #656565;
 }
 
-/*WRAPPER*/
-
-#wrapper {
-  display: flex;
-}
-
 /*MAP*/
-/* flex : https://stackoverflow.com/questions/17217766/two-divs-side-by-side-fluid-display */
 
 #map {
   margin-top: 4vh;
   margin-left: 2vw;
-  flex: 0 0 65%;
 }
 
 #map>* {
@@ -80,35 +72,34 @@ body {
 /*NEWS LIST*/
 
 #newsFrame {
-  margin-top: 4vh;
-  /*border: 0.2vw solid #454545;
-  border-radius: 2vw;*/
-  flex: 1;
-
-}
-
-#newsList {
-  list-style-type: none;
-  padding: 0;
-  margin : 0;
-}
-
-.article {
-  padding: 0.3vw;
-  padding-bottom: 0.1vw;
-  border: 0.2vw solid black;
-  margin: 0.2vw;
-  background: #454545;
-  color: #FAFAFA;
-
+  margin-left: 64vw;
+  width: 33.6vw;
+  float: left;
 }
 
 #infoCountry {
+  margin-top: 1vh;
+  margin-bottom: 4vh;
+  text-align: center;
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+#newsList {
+  margin : 0;
+  padding: 0;
+  height: 61vh;
+  overflow-y: auto;
+  list-style-type: none;
+}
+
+.article {
+  margin-bottom: 0.5vw;
   padding: 0.3vw;
   padding-bottom: 0.1vw;
-  margin: 0.2vw;
   border: 0.2vw solid black;
-  background: red;
+  background: #454545;
+  color: #FAFAFA;
 }
 
 /*FOOTER*/

@@ -1,4 +1,3 @@
-
 //fichier pour gerer le menu avec les filtres par filter de news
 
 var displayLog2 = true;
@@ -10,7 +9,7 @@ filter['sciences']=true;
 filter['eonomie']=true;
 
 
-function consoleLog2(message) 
+function consoleLog2(message)
 {
   if (displayLog2)
     console.log(message);
@@ -79,11 +78,11 @@ function checkButton(filterButton, id)
 {
 	if(!filterButton)
 	{
-		document.getElementById(id).style.color="red";
+		document.getElementById(id).style.textShadow="1px 1px 2px Crimson";
 	}
 	else
 	{
-		document.getElementById(id).style.color="green";
+		document.getElementById(id).style.textShadow="1px 1px 2px Chartreuse";
 	}
 }
 

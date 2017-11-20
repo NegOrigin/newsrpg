@@ -1,4 +1,3 @@
-
 function addArticle(title, text)
 {
 	var article = document.createElement('li');
@@ -21,6 +20,10 @@ function chooseArticleContent()
 		if(filter['politique'])
 		{
 			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
+			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
+			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
+			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
+			addArticle("Politique", "Plein de contenu trop interessant sur la politique dans le pays " + country);
 		}
 
 		if(filter['sport'])
@@ -38,7 +41,7 @@ function chooseArticleContent()
 			addArticle("Economie", "Plein de contenu trop interessant sur l'economie dans le pays " + country);
 		}
 	}
-	
+
 }
 
 function emptyNewsList()
