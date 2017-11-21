@@ -10,21 +10,27 @@
 
   <body>
     <div id='title'>
-      <h1>NewsMap</h1>
+      <div class='left'>
+        <h1>NewsMap</h1>
+      </div>
     </div>
 
     <div id='menu'>
-      <ul id='pages'>
-        <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
-        <li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
-      </ul>
+      <div class='left'>
+        <ul id='pages'>
+          <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
+          <li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
+        </ul>
+      </div>
 
-      <ul id='filters'>
-        <li><p id='filterPolitique'>Politique</p></li>
-        <li><p id='filterSport'>Sport</p></li>
-        <li><p id='filterSciences'>Sciences</p></li>
-        <li><p id='filterEconomie'>Economie</p></li>
-      </ul>
+      <div class='right'>
+        <ul id='filters'>
+          <li><p id='filterPolitique'>Politique</p></li>
+          <li><p id='filterSport'>Sport</p></li>
+          <li><p id='filterSciences'>Sciences</p></li>
+          <li><p id='filterEconomie'>Economie</p></li>
+        </ul>
+      </div>
     </div>
 
     <div id='reference'>
@@ -53,6 +59,7 @@
       <a href='#'>Nous contacter</a>
     </div>
 
+    <div id="color"></div>
     <script type='text/javascript' src='/scripts/cookies.js'></script>
     <script type='text/javascript' src='/scripts/filters.js'></script>
   </body>

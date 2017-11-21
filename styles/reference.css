@@ -1,28 +1,27 @@
 #reference {
 	height: 60vh;
-	margin: 10vh;
+	margin: 10vh 4vw;
 }
 
-.right {
+#reference .right {
 	float: left;
 	text-align: left;
-	margin-left: 6vw;
+	margin-left: 8vw;
 }
 
-.right p {
+#reference .right p {
 	height: 4vh;
 	font-size: 2vh;
 	margin-top: 2.6vh;
 }
 
-.left {
+#reference .left {
 	float: left;
-	text-align: right;
-	margin-left: 50vw;
-
+	text-align: right;	
+	width: 54vw;
 }
 
-.left p {
+#reference .left p {
 	height: 4vh;
 	font-size: 2.5vh;
 }
