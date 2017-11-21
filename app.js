@@ -44,9 +44,9 @@ app.get('/bienvenue', function(req, res) {
   res.render('bienvenue.twig', { 'skipBienvenue': req.cookies.skipBienvenue });
 });
 
-// Gestion references
+// Gestion reference
 app.get('/reference', function(req, res) {
-  // Rendu de bienvenue.twig
+  // Rendu de reference.twig
   res.render('reference.twig');
 });
 
