@@ -18,15 +18,19 @@ body::after {
   right: 0;
   background: url('/images/wallpaper.jpg') no-repeat center center fixed;
   background-size: cover;
-  opacity: 0.2;
-  z-index: -1;
+  opacity: 0.5;
+  z-index: -3;
 }
 
 #title {
-  text-align: center;
   height: 15vh;
   font-family: 'Northwood High';
   font-size: 5vh;
+}
+
+#title .left {
+  text-align: center;
+  width: 62vw;
 }
 
 #title h1 {
@@ -37,19 +41,27 @@ body::after {
 /*MENU*/
 
 #menu {
+  height: 5vh;
+}
 
+#menu::after {
+  content: '';
+  position: absolute;
+  top: 15vh;
+  left: 0;
+  height: 5vh;
+  right: 0;
+  background: #454545;
+  z-index: -2;
 }
 
 /*MENU PAGES*/
 
 #pages {
-  background: #454545;
   margin: 0;
-  padding: 0;
-  padding-left: 1vw;
-  text-align: left;
+  padding-left: 4vw;
   height: 5vh;
-  float: left;
+  width: 58vw;
 }
 
 #pages li {
@@ -57,23 +69,21 @@ body::after {
   list-style: none;
 }
 
-#pages :hover img{
-  background: #656565;
-}
-
 #pages img {
   width: 5vh;
+}
+
+#pages :hover img{
+  background: #656565;
 }
 
 /*MENU FILTRES*/
 
 #filters {
-  background: #454545;
   margin: 0;
-  margin-left: 0vw;
-  padding: 0;
-  padding-left: 0vw;
-  text-align: center;
+  margin-top: -5vh;
+  padding-right: 4vw;
+  text-align: right;
   height: 5vh;
 }
 
@@ -96,13 +106,42 @@ body::after {
   background: #656565;
 }
 
+/*CONTENT*/
+
+#content::after {
+  content: '';
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  height: 80vh;
+  right: 0;
+  background: White;
+  opacity: 0.4;
+  z-index: -2;
+}
+
 /*FOOTER*/
 
 #footer {
-  background: #454545;
+  height: 4vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
+}
+
+#footer::after {
+  content: '';
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  height: 6vh;
+  right: 0;
+  background: #454545;
+  z-index: -2;
+}
+
+#footer .left {
   text-align: center;
+  width: 62vw;
 }
 
 #footer a {
@@ -111,4 +150,18 @@ body::after {
   color: #BABABA;
   font-size: 1.8vh;
   text-decoration: none;
+}
+
+/*COLOR*/
+
+#color::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 62vw;
+  bottom: -6vw;
+  right: 0;
+  background-color: CornflowerBlue;
+  opacity: 0.2;
+  z-index: -1;
 }

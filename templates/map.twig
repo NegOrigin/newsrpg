@@ -11,21 +11,20 @@
 
   <body>
   	<div id='title'>
-      <div id='left'>
+      <div class='left'>
         <h1>NewsMap</h1>
       </div>
-      <div id='right'></div>
 	  </div>
 
   	<div id='menu'>
-      <div id='left'>
+      <div class='left'>
     		<ul id='pages'>
     	    <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
     			<li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
     		</ul>
       </div>
 
-      <div id='right'>
+      <div class='right'>
     		<ul id='filters'>
     			<li><p id='filterPolitique'>Politique</p></li>
     			<li><p id='filterSport'>Sport</p></li>
@@ -35,18 +34,24 @@
       </div>
   	</div>
 
-    <div id='map'></div>
+    <div id='content'>
+      <div id='map'></div>
 
-    <div id='newsFrame'>
-    	<p id='infoCountry'></p>
-    	<ul id='newsList'></ul>
+      <div id='newsFrame'>
+      	<p id='infoCountry'></p>
+      	<ul id='newsList'></ul>
+      </div>
     </div>
 
     <div id='footer'>
-      <a href='#'>Qui sommes-nous ?</a>
-      <a href='#'>Réferences</a>
-      <a href='#'>Nous contacter</a>
+      <div class='left'>
+        <a href='#'>Qui sommes-nous ?</a>
+        <a href='#'>Réferences</a>
+        <a href='#'>Nous contacter</a>
+      </div>
     </div>
+
+    <div id='color'></div>
 
     <script type='text/javascript' src='/scripts/cookies.js'></script>
     <script type='text/javascript' src='/scripts/map.js'></script>

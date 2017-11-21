@@ -2,7 +2,7 @@ PIXI.utils.sayHello();
 
 var displayLog = false;
 
-var rendererWidthScreenPortion = 0.6;
+var rendererWidthScreenPortion = 0.58;
 var rendererHeightScreenPortion = 0.71;
 
 var renderer = PIXI.autoDetectRenderer(window.innerWidth*rendererWidthScreenPortion,
