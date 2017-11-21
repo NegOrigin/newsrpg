@@ -44,6 +44,12 @@ app.get('/bienvenue', function(req, res) {
   res.render('bienvenue.twig', { 'skipBienvenue': req.cookies.skipBienvenue });
 });
 
+// Gestion references
+app.get('/reference', function(req, res) {
+  // Rendu de bienvenue.twig
+  res.render('reference.twig');
+});
+
 // Gestion 404
 app.use(function(req, res, next){
   // Définition du code d'erreur
