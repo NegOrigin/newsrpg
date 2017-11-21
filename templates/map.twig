@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang='fr'>
+
+  <head>
+    <meta charset='utf-8'>
+    <title>NewsMap - Map</title>
+    <link rel='stylesheet' href='styles/map.css'>
+    <script src='/scripts/pixi.min.js'></script>
+  </head>
+
+  <body>
+  	<div id='title'>
+      <h1>NewsMap</h1>
+	   </div>
+
+  	<div id='menu'>
+  		<ul id='pages'>
+  	      	<li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
+  			<li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
+  		</ul>
+
+  		<ul id='filters'>
+  			<li><p id='filterPolitique'>Politique</p></li>
+  			<li><p id='filterSport'>Sport</p></li>
+  			<li><p id='filterSciences'>Sciences</p></li>
+  			<li><p id='filterEconomie'>Economie</p></li>
+  		</ul>
+  	</div>
+
+    <div id='map'></div>
+
+    <div id='newsFrame'>
+    	<p id='infoCountry'></p>
+    	<ul id='newsList'></ul>
+    </div>
+
+    <div id='footer'>
+      <a href='#'>Qui sommes-nous ?</a>
+      <a href='#'>Réferences</a>
+      <a href='#'>Nous contacter</a>
+    </div>
+
+    <script type='text/javascript' src='/scripts/cookies.js'></script>
+    <script type='text/javascript' src='/scripts/map.js'></script>
+    <script type='text/javascript' src='/scripts/filters.js'></script>
+    <script type='text/javascript' src='/scripts/articles.js'></script>
+  </body>
+
+</html>

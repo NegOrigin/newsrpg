@@ -1,0 +1,31 @@
+{
+  "name": "newsrpg",
+  "author": {
+    "name": "Raphael Almeida, Corentin Frery, Nicolas Leroy"
+  },
+  "description": "Projet réalisé dans le cadre du cours Web Sémantique (8INF911)",
+  "homepage": "",
+  "version": "0.1.0",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/NegOrigin/newsrpg.git"
+  },
+  "dependencies": {
+    "express": "^4.14",
+    "body-parser": "^1.16",
+    "cookie-parser": "^1.4",
+    "express-session": "^1.15",
+    "cookie-session": "^1.1",
+    "serve-static": "^1.11",
+    "csurf": "^1.9",
+    "serve-favicon": "^2.3",
+    "twig": "^0.10",
+    "nodemon": "^1.11"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
