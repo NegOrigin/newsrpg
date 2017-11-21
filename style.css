@@ -144,6 +144,11 @@ body::after {
   color: #FAFAFA;
 }
 
+/*WELCOME PAGE*/
+#welcome p{
+  text-align: center;
+}
+
 /*FOOTER*/
 
 #footer {
@@ -159,4 +164,8 @@ body::after {
   color: #BABABA;
   font-size: 1.8vh;
   text-decoration: none;
+}
+
+#welcomeBody #footer {
+
 }
