@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang='fr'>
+<script type='text/javascript' src="lib/w3.js"></script>
 
   <head>
     <meta charset='utf-8'>
@@ -9,33 +10,20 @@
   </head>
 
   <body>
-    <div id='title'>
-      <h1>NewsMap</h1>
+    <div w3-include-html="header.html"></div> 
+
+    <div id='map'></div>
+
+    <div id='newsFrame'>
+    	<p id='infoCountry'></p>
+    	<ul id='newsList'></ul>
     </div>
 
-    <div id='menu'>
-      <ul id='filters'>
-        <li><p id='filterPolitique'>Politique</p></li>
-        <li><p id='filterSport'>Sport</p></li>
-        <li><p id='filterSciences'>Sciences</p></li>
-        <li><p id='filterEconomie'>Economie</p></li>
-      </ul>
-    </div>
+    <div w3-include-html="footer.html"></div>
 
-    <!--<div id="wrapper">-->
-	    <div id='map'></div>
-
-	    <div id='newsFrame'>
-	    	<p id='infoCountry'></p>
-	    	<ul id='newsList'></ul>
-	    </div>
-    <!--</div>-->
-
-    <div id='footer'>
-      <a href='#'>Bienvenue</a><br />
-      <a href='#'>Qui sommes-nous ?</a><br />
-      <a href='#'>Réferences</a>
-    </div>
+    <script>
+		w3.includeHTML();
+	</script>
 
     <script type='text/javascript' src='map.js'></script>
     <script type='text/javascript' src='menuTypesNews.js'></script>
