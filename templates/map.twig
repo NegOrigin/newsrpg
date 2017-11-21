@@ -4,27 +4,35 @@
   <head>
     <meta charset='utf-8'>
     <title>NewsMap - Map</title>
+    <link rel='stylesheet' href='styles/common.css'>
     <link rel='stylesheet' href='styles/map.css'>
     <script src='/scripts/pixi.min.js'></script>
   </head>
 
   <body>
   	<div id='title'>
-      <h1>NewsMap</h1>
-	   </div>
+      <div id='left'>
+        <h1>NewsMap</h1>
+      </div>
+      <div id='right'></div>
+	  </div>
 
   	<div id='menu'>
-  		<ul id='pages'>
-  	      	<li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
-  			<li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
-  		</ul>
+      <div id='left'>
+    		<ul id='pages'>
+    	    <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
+    			<li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
+    		</ul>
+      </div>
 
-  		<ul id='filters'>
-  			<li><p id='filterPolitique'>Politique</p></li>
-  			<li><p id='filterSport'>Sport</p></li>
-  			<li><p id='filterSciences'>Sciences</p></li>
-  			<li><p id='filterEconomie'>Economie</p></li>
-  		</ul>
+      <div id='right'>
+    		<ul id='filters'>
+    			<li><p id='filterPolitique'>Politique</p></li>
+    			<li><p id='filterSport'>Sport</p></li>
+    			<li><p id='filterSciences'>Sciences</p></li>
+    			<li><p id='filterEconomie'>Economie</p></li>
+    		</ul>
+      </div>
   	</div>
 
     <div id='map'></div>
