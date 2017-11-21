@@ -1,19 +1,18 @@
 /*WELCOME PAGE*/
 
-#welcome {
-  margin: 10vh;
+#content {
+  margin: 10vh 5vw;
   height: 60vh;
 }
 
-#welcome #text {
-    text-align: center;
-    width: 60%;
-    float: left;
+#content .left {
+  width: 52vw;
+  text-align: center;
 }
 
-#welcome #screenshot {
+/*#content .right {
     float: left;
-}
+}*/
 
 #toast {
     display: none;

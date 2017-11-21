@@ -10,7 +10,9 @@
 
     <body>
         <div id='title'>
-            <h1>NewsMap</h1>
+            <div class='left'>
+                <h1>NewsMap</h1>
+            </div>
         </div>
 
         <div id='menu'>
@@ -27,8 +29,8 @@
             </ul>
         </div>
 
-        <div id='welcome'>
-            <div id="text">
+        <div id='content'>
+            <div class="left">
                 <h2>Bienvenu sur NewsMap !</h2>
                 <p>Ici, vous pourrez vous renseigner sur ce qu'il se passe dans le monde.
                     Notre site vous propose de parcourir l'actualité d'une manière amusante et ludique !</p>
@@ -49,16 +51,20 @@
                 </div>
 
             </div>
-            <div id="screenshot">
+            <!--<div class="right">
                 <p>SOME SCREENSHOTS MOFO</p>
-            </div>
+            </div>-->
         </div>
 
         <div id='footer'>
-            <a href='#'>Qui sommes-nous ?</a>
-            <a href='/reference'>Réferences</a>
-            <a href='#'>Nous contacter</a>
+            <div class='left'>
+                <a href='#'>Qui sommes-nous ?</a>
+                <a href='#'>Réferences</a>
+                <a href='#'>Nous contacter</a>
+            </div>
         </div>
+
+        <div id='color'></div>
 
         <script>
             document.getElementById('directMap').addEventListener("change", function() {

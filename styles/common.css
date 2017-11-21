@@ -116,7 +116,7 @@ body::after {
   height: 80vh;
   right: 0;
   background: White;
-  opacity: 0.4;
+  opacity: 0.6;
   z-index: -2;
 }
 
@@ -159,9 +159,9 @@ body::after {
   position: absolute;
   top: 0;
   left: 62vw;
-  bottom: -6vw;
+  bottom: -3vw;
   right: 0;
-  background-color: CornflowerBlue;
-  opacity: 0.2;
+  background-color: Black;
+  opacity: 0.1;
   z-index: -1;
 }
