@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang='fr'>
 
-  <head>
-    <meta charset='utf-8'>
-    <title>NewsMap - Bienvenue</title>
-    <link rel='stylesheet' href='styles/common.css'>
-    <link rel='stylesheet' href='/styles/bienvenue.css'>
-  </head>
+    <head>
+        <meta charset='utf-8'>
+        <title>NewsMap - Bienvenue</title>
+        <link rel='stylesheet' href='styles/common.css'>
+        <link rel='stylesheet' href='/styles/bienvenue.css'>
+    </head>
 
-  <body>
-    <div id='title'>
-      <h1>NewsMap</h1>
-    </div>
+    <body>
+        <div id='title'>
+            <h1>NewsMap</h1>
+        </div>
 
-    <div id='menu'>
-      <ul id='pages'>
-        <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
-        <li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
-      </ul>
+        <div id='menu'>
+            <ul id='pages'>
+                <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
+                <li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
+            </ul>
 
-      <ul id='filters'>
-        <li><p id='filterPolitique'>Politique</p></li>
-        <li><p id='filterSport'>Sport</p></li>
-        <li><p id='filterSciences'>Sciences</p></li>
-        <li><p id='filterEconomie'>Economie</p></li>
-      </ul>
-    </div>
+            <ul id='filters'>
+                <li><p id='filterPolitique'>Politique</p></li>
+                <li><p id='filterSport'>Sport</p></li>
+                <li><p id='filterSciences'>Sciences</p></li>
+                <li><p id='filterEconomie'>Economie</p></li>
+            </ul>
+        </div>
 
-    <div id='welcome'>
-      <p>Bienvenu sur NewsMap !</p>
-      <p>Ici, vous pourrez vous renseigner sur ce qu'il se passe dans le monde.
-        Notre site vous propose de parcourir l'actualité d'une manière amusante et ludique !</p>
-      <p>Vous incarnerez un voyageur qui peut se déplacer de pays en pays sur la carte du monde.
-        C'est très simple, vous pouvez bouger votre voyageur avec les flèches directionnelles ou WASD.
-        Lorsqu'il arrive sur un pays, le nom du pays apparait alors à droite de la carte.
-        Juste en dessous du nom, vous pourrez choisir parmis une liste d'article qui concernent ce pays !</p>
-      <p>Si certains types d'articles ne vous intéressent pas, pas d'inquiétude !
-        Vous pouvez filtrer le contenu des articles avec les boutons en haut de la page.
-        Votre choix sera même conservé pour votre prochaine visite.</p>
-      <p>Il ne vous reste plus qu'à voyager, en cliquant sur l'icone de la boussole en haut de la page.</p>
-      <p>Bonne visite !</p>
-      <p><input id='directMap' type='checkbox' name='directMap' {% if skipBienvenue == 'true' %}checked{% endif %}> Je veux commencer directement sur la carte la prochaine fois.</p>
-    </div>
+        <div id='welcome'>
+            <div id="text">
+                <h2>Bienvenu sur NewsMap !</h2>
+                <p>Ici, vous pourrez vous renseigner sur ce qu'il se passe dans le monde.
+                    Notre site vous propose de parcourir l'actualité d'une manière amusante et ludique !</p>
+                <p>Vous incarnerez un voyageur qui peut se déplacer de pays en pays sur la carte du monde.
+                    C'est très simple, vous pouvez bouger votre voyageur avec les flèches directionnelles ou WASD.
+                    Lorsqu'il arrive sur un pays, le nom du pays apparait alors à droite de la carte.
+                    Juste en dessous du nom, vous pourrez choisir parmis une liste d'article qui concernent ce pays !</p>
+                <p>Si certains types d'articles ne vous intéressent pas, pas d'inquiétude !
+                    Vous pouvez filtrer le contenu des articles avec les boutons en haut de la page.
+                    Votre choix sera même conservé pour votre prochaine visite.</p>
+                <p>Il ne vous reste plus qu'à voyager, en cliquant sur l'icone de la boussole en haut de la page.</p>
+                <h3>Bonne visite !</h3>
+                <input id='directMap' type='checkbox' name='directMap' {% if skipBienvenue == 'true' %}checked{% endif %}>
+                <label id="choix" for="directMap">Je veux commencer directement sur la carte la prochaine fois.</label>
 
-    <div id='footer'>
-      <a href='#'>Qui sommes-nous ?</a>
-      <a href='/reference'>Réferences</a>
-      <a href='#'>Nous contacter</a>
-    </div>
+                <div id="toast">
+                    Votre choix à bien été pris en compte
+                </div>
 
-    <script>
-    document.getElementById('directMap').addEventListener("change", function() {
-      if(directMap.checked)
-        setCookie("skipBienvenue", true, 365*2);
-      else
-        setCookie("skipBienvenue", false, 365*2);
-    });
-    </script>
+            </div>
+            <div id="screenshot">
+                <p>SOME SCREENSHOTS MOFO</p>
+            </div>
+        </div>
 
-    <script type='text/javascript' src='/scripts/cookies.js'></script>
-    <script type='text/javascript' src='/scripts/filters.js'></script>
-  </body>
+        <div id='footer'>
+            <a href='#'>Qui sommes-nous ?</a>
+            <a href='/reference'>Réferences</a>
+            <a href='#'>Nous contacter</a>
+        </div>
+
+        <script>
+            document.getElementById('directMap').addEventListener("change", function() {
+                if(directMap.checked)
+                    setCookie("skipBienvenue", true, 365*2);
+                else
+                    setCookie("skipBienvenue", false, 365*2);
+            });
+        </script>
+
+        <script type='text/javascript' src='/scripts/cookies.js'></script>
+        <script type='text/javascript' src='/scripts/filters.js'></script><script type="text/javascript" src="/scripts/jquery-3.2.1.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("[name=directMap]").change(function(){
+                    $('#toast').fadeIn(2000, function(){
+                        $('#toast').fadeOut(2000);
+                    });
+                });
+            });
+        </script>
+    </body>
 
 </html>

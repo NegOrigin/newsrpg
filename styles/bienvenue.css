@@ -5,7 +5,22 @@
   height: 60vh;
 }
 
-#welcome p {
-  text-align: center;
-    margin-top: 0;
+#welcome #text {
+    text-align: center;
+    width: 60%;
+    float: left;
+}
+
+#welcome #screenshot {
+    float: left;
+}
+
+#toast {
+    display: none;
+    margin: auto;
+    padding: 5px;
+    background-color: #898d89;
+    text-align: center;
+    width: inherit;
+    height: auto;
 }
