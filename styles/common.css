@@ -1,167 +1,158 @@
 @font-face {
-  font-family: 'Northwood High';
-  src: url('/fonts/Northwood High.ttf');
+    font-family: 'Northwood High';
+    src: url('/fonts/Northwood High.ttf');
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
 body::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: url('/images/wallpaper.jpg') no-repeat center center fixed;
-  background-size: cover;
-  opacity: 0.5;
-  z-index: -3;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url('/images/wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.5;
+    z-index: -3;
 }
 
 #title {
-  height: 15vh;
-  font-family: 'Northwood High';
-  font-size: 5vh;
+    height: 15vh;
+    font-family: 'Northwood High';
+    font-size: 5vh;
 }
 
 #title .left {
-  text-align: center;
-  width: 62vw;
+    text-align: center;
+    width: 62vw;
 }
 
 #title h1 {
-  margin: 0;
-  line-height: 15vh;
+    margin: 0;
+    line-height: 15vh;
 }
 
 /*MENU*/
 
 #menu {
-  height: 5vh;
+    height: 5vh;
 }
 
 #menu::after {
-  content: '';
-  position: absolute;
-  top: 15vh;
-  left: 0;
-  height: 5vh;
-  right: 0;
-  background: #454545;
-  z-index: -2;
+    content: '';
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    height: 5vh;
+    right: 0;
+    background: #454545;
+    z-index: -2;
 }
 
 /*MENU PAGES*/
 
 #pages {
-  margin: 0;
-  padding-left: 4vw;
-  height: 5vh;
-  width: 58vw;
+    margin: 0;
+    padding-left: 4vw;
+    height: 5vh;
+    width: 58vw;
 }
 
 #pages li {
-  display: inline;
-  list-style: none;
+    display: inline;
+    list-style: none;
 }
 
 #pages img {
-  width: 5vh;
+    width: 5vh;
+    cursor: pointer;
 }
 
 #pages :hover img{
-  background: #656565;
+    background: #656565;
 }
 
 /*MENU FILTRES*/
 
 #filters {
-  margin: 0;
-  margin-top: -5vh;
-  padding-right: 4vw;
-  text-align: right;
-  height: 5vh;
+    display: block;
 }
 
 #filters li {
-  display: inline;
-  list-style: none;
+    padding: 2px;
+    margin: 2px;
+    line-height: 0;
+    color: #FAFAFA;
+    font-size: 3vh;
+    cursor: pointer;
 }
 
-#filters p {
-  margin: 0;
-  padding: 0 2vh;
-  line-height: 5vh;
-  display: inline-block;
-  color: #FAFAFA;
-  font-size: 2vh;
-  cursor: pointer;
-}
-
-#filters :hover p {
-  background: #656565;
+#filters li:hover {
+    background: #656565;
 }
 
 /*CONTENT*/
 
 #content::after {
-  content: '';
-  position: absolute;
-  top: 20vh;
-  left: 0;
-  height: 80vh;
-  right: 0;
-  background: White;
-  opacity: 0.6;
-  z-index: -2;
+    content: '';
+    position: absolute;
+    top: 20vh;
+    left: 0;
+    height: 80vh;
+    right: 0;
+    background: White;
+    opacity: 0.6;
+    z-index: -2;
 }
 
 /*FOOTER*/
 
 #footer {
-  height: 4vh;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+    height: 4vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 #footer::after {
-  content: '';
-  position: absolute;
-  top: 100vh;
-  left: 0;
-  height: 6vh;
-  right: 0;
-  background: #454545;
-  z-index: -2;
+    content: '';
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    height: 6vh;
+    right: 0;
+    background: #454545;
+    z-index: -2;
 }
 
 #footer .left {
-  text-align: center;
-  width: 62vw;
+    text-align: center;
+    width: 62vw;
 }
 
 #footer a {
-  padding: 0 1vw;
-  line-height: 4vh;
-  color: #BABABA;
-  font-size: 1.8vh;
-  text-decoration: none;
+    padding: 0 1vw;
+    line-height: 4vh;
+    color: #BABABA;
+    font-size: 1.8vh;
+    text-decoration: none;
 }
 
 /*COLOR*/
 
 #color::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 62vw;
-  bottom: -3vw;
-  right: 0;
-  background-color: Black;
-  opacity: 0.1;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 62vw;
+    bottom: -3vw;
+    right: 0;
+    background-color: Black;
+    opacity: 0.1;
+    z-index: -1;
 }
