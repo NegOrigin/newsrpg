@@ -28,6 +28,7 @@ PIXI.loader
   .add('mapBottomPic', 'images/worldMap.jpg')
   .add('characterSheetEarth', 'images/characterSheet.png')
   .add('characterSheetWater', 'images/characterSheet2.png')
+  .add('cloud', 'images/cloud.png')
   .load(setup);
 
 var characterWidth = 512;
@@ -39,6 +40,13 @@ var characterRect;
 var characterTexture;
 var characterTextureEarth;
 var characterTextureWater;
+
+var cloudWidth = 579;
+var cloudHeight = 126;
+
+var cloud;
+var cloudRect;
+var cloudTexture;
 
 var mapWidth = 5652;
 var mapHeight = 2948;
@@ -193,11 +201,22 @@ function setup() {
   character.vx = 0;
   character.vy = 0;
 
+  cloudRect = new PIXI.Rectangle(0, 0, cloudWidth, cloudHeight);
+  cloudTexture = PIXI.loader.resources['cloud'].texture;
+  cloudTexture.frame = cloudRect;
+
+  cloud = new PIXI.Sprite(cloudTexture);
+  cloud.anchor.set(0.5, 1);
+  cloud.scale.set(characterScale, characterScale);
+  cloud.x = character.x;
+  cloud.y = character.y+20;
+
   testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
 
   stage.addChild(map);
   stage.addChild(mapTop);
   stage.addChild(mapBottom);
+  stage.addChild(cloud);
   stage.addChild(character);
 
   animationLoop();
@@ -212,6 +231,7 @@ function setup() {
     character.y -= map.y;
     map.y = (renderer.screen.height-stage.scale.y*usefulMapHeight)/(2*stage.scale.y);
     character.y += map.y;
+    cloud.y = character.y+20;
     mapTop.y = map.y;
     mapTopRect.y = mapRect.y-mapTopRect.height;
     mapBottom.y = map.y+usefulMapHeight;
@@ -314,6 +334,8 @@ function actionMove() {
 
   character.x += character.vx;
   character.y += character.vy;
+  cloud.x = character.x;
+  cloud.y = character.y+20;
 
   moveMap();
   testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
@@ -328,6 +350,8 @@ function actionMove() {
     if(!outOfBounds(character.x+character.vx, character.y+character.vy)) {
       character.x += character.vx;
       character.y += character.vy;
+      cloud.x = character.x;
+      cloud.y = character.y+20;
 
       moveMap();
       testPosition(mapRect.x+character.x, mapRect.y+character.y-map.y);
@@ -384,73 +408,50 @@ function outOfBounds(x, y) {
 
 function testPosition(x, y) {
   if(Canada.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Canada");
   } else if(France.contains(x, y) || France2.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("France");
   } else if(RoyaumeUni.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Royaume-Uni");
   } else if(Espagne.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Espagne");
   } else if(Portugal.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Portugal");
   } else if(EtatsUnis.contains(x, y) || EtatsUnis2.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Etats-Unis");
   } else if(Irlande.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Irlande");
   } else if(Danemark.contains(x, y) || Danemark2.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Danemark");
   } else if(Belgique.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Belgique");
   } else if(PaysBas.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Pays-Bas");
   } else if(Allemagne.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Allemagne");
   } else if(Suisse.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Suisse");
   } else if(Italie.contains(x, y) || Italie2.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Italie");
   } else if(Mexique.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Mexique");
   } else if(Bresil.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Brésil");
   } else if(Luxembourg.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Luxembourg");
   } else if(Russie.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Russie");
   } else if(Inde.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Inde");
   } else if(Japon.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Japon");
   } else if(CoreeDuSud.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Corée du Sud");
   } else if(CoreeDuNord.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Corée du Nord");
   } else if(Chine.contains(x, y)) {
-    character.texture = characterTextureEarth;
     changeCountry("Chine");
   } else {
-    character.texture = characterTextureWater;
     changeCountry("CAKE");
   }
 
@@ -461,10 +462,15 @@ function changeCountry(name) {
   consoleLog(name);
   country = name;
 
-  if(country === 'CAKE')
+  if(country === 'CAKE') {
+    cloud.visible = true;
+    //character.texture = characterTextureEarth;
     document.getElementById('infoCountry').innerHTML = 'Pays non identifié';
-  else
+  } else {
+    cloud.visible = false;
+    //character.texture = characterTextureWater;
     document.getElementById('infoCountry').innerHTML = country;
+  }
 
   chooseArticleContent();
 }
