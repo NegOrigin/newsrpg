@@ -48,6 +48,10 @@ var cloud;
 var cloudRect;
 var cloudTexture;
 
+var cloudInOut;
+var fadeIn;
+var fadeOut;
+
 var mapWidth = 5652;
 var mapHeight = 2948;
 var mapBorder = 32;
@@ -463,16 +467,44 @@ function changeCountry(name) {
   country = name;
 
   if(country === 'CAKE') {
-    cloud.visible = true;
+    cloudFade('in');
+    //cloud.visible = true;
     //character.texture = characterTextureEarth;
     document.getElementById('infoCountry').innerHTML = 'Pays non identifié';
   } else {
-    cloud.visible = false;
+    cloudFade('out');
+    //cloud.visible = false;
     //character.texture = characterTextureWater;
     document.getElementById('infoCountry').innerHTML = country;
   }
 
   chooseArticleContent();
+}
+
+function cloudFade(inOut) {
+  if (cloudInOut != inOut && inOut == 'in') {
+    cloudInOut = inOut;
+    clearInterval(fadeOut);
+
+    fadeIn = setInterval(function() {
+      if (cloudInOut == 'out' || cloud.alpha >= 1) {
+        cloudInOut = null;
+        clearInterval(fadeIn);
+      } else
+        cloud.alpha += 0.1;
+    }, 1000/30);
+  } else if (cloudInOut != inOut && inOut == 'out') {
+    cloudInOut = inOut;
+    clearInterval(fadeIn);
+
+    fadeOut = setInterval(function() {
+      if (cloudInOut == 'in' || cloud.alpha <= 0) {
+        cloudInOut = null;
+        clearInterval(fadeOut);
+      } else
+        cloud.alpha -= 0.1;
+    }, 1000/30);
+  }
 }
 
 function consoleLog(message) {
