@@ -26,8 +26,7 @@ PIXI.loader
   .add('mapPic', 'images/worldMap.jpg')
   .add('mapTopPic', 'images/worldMap.jpg')
   .add('mapBottomPic', 'images/worldMap.jpg')
-  .add('characterSheetEarth', 'images/characterSheet.png')
-  .add('characterSheetWater', 'images/characterSheet2.png')
+  .add('characterSheet', 'images/characterSheet.png')
   .add('cloud', 'images/cloud.png')
   .load(setup);
 
@@ -38,8 +37,6 @@ var characterScale = 0.3;
 var character;
 var characterRect;
 var characterTexture;
-var characterTextureEarth;
-var characterTextureWater;
 
 var cloudWidth = 579;
 var cloudHeight = 126;
@@ -78,7 +75,7 @@ var move;
 var moveState;
 var keyPressed;
 
-var movementSpeed = 1.5;
+var movementSpeed = 2;
 
 var pointsCanada = [962,484,1132,342,1154,341,1177,353,1211,339,1272,329,1295,328,1349,339,1360,324,1346,310,1404,275,1442,268,1471,275,1459,252,1528,230,1560,232,1600,218,1646,215,1667,225,1699,206,1760,213,1764,197,1829,186,1878,180,1934,175,1991,164,2139,167,2166,171,1972,225,1884,271,1893,285,1932,317,1966,335,1962,364,1998,383,1957,414,1904,490,1919,538,1906,544,1949,579,1963,601,1955,624,1945,658,1966,665,1973,700,1959,715,1882,701,1859,705,1860,730,1770,768,1757,752,1750,733,1755,704,1737,706,1695,741,1645,742,1623,754,1574,777,1517,795,1509,791,1550,743,1526,715,1516,688,1493,680,1494,675,1461,692,1407,680,1393,675,1026,675,1007,688,973,658,986,624,983,591,1025,556,1015,551,1020,491,982,507];
 var Canada = new PIXI.Polygon(pointsCanada);
@@ -192,9 +189,7 @@ function setup() {
   mapBottom.y = map.y+usefulMapHeight;
 
   characterRect = new PIXI.Rectangle(0, 0, characterWidth/4, characterHeight/4);
-  characterTextureEarth = PIXI.loader.resources['characterSheetEarth'].texture;
-  characterTextureWater = PIXI.loader.resources['characterSheetWater'].texture;
-  characterTexture = characterTextureEarth;
+  characterTexture = PIXI.loader.resources['characterSheet'].texture;
   characterTexture.frame = characterRect;
 
   character = new PIXI.Sprite(characterTexture);
@@ -225,7 +220,7 @@ function setup() {
 
   animationLoop();
 
-  window.onresize = function (event) {
+  window.onresize = function(event) {
     renderer.resize(window.innerWidth*rendererWidthScreenPortion,
       window.innerHeight*rendererHeightScreenPortion);
 
@@ -276,7 +271,7 @@ function setup() {
   });
 
   window.addEventListener('keyup', function(e) {
-    if (e.which == keyPressed) {
+    if(e.which == keyPressed) {
       e.preventDefault();
       stopMove();
     }
@@ -458,8 +453,6 @@ function testPosition(x, y) {
   } else {
     changeCountry("CAKE");
   }
-
-  character.texture.frame = characterRect;
 }
 
 function changeCountry(name) {
@@ -468,13 +461,9 @@ function changeCountry(name) {
 
   if(country === 'CAKE') {
     cloudFade('in');
-    //cloud.visible = true;
-    //character.texture = characterTextureEarth;
     document.getElementById('infoCountry').innerHTML = 'Pays non identifié';
   } else {
     cloudFade('out');
-    //cloud.visible = false;
-    //character.texture = characterTextureWater;
     document.getElementById('infoCountry').innerHTML = country;
   }
 
@@ -482,32 +471,36 @@ function changeCountry(name) {
 }
 
 function cloudFade(inOut) {
-  if (cloudInOut != inOut && inOut == 'in') {
+  if(cloudInOut != inOut && inOut == 'in') {
     cloudInOut = inOut;
     clearInterval(fadeOut);
 
     fadeIn = setInterval(function() {
-      if (cloudInOut == 'out' || cloud.alpha >= 1) {
+      if(cloudInOut == 'out' || cloud.alpha >= 1) {
         cloudInOut = null;
         clearInterval(fadeIn);
-      } else
+      } else {
         cloud.alpha += 0.1;
-    }, 1000/30);
-  } else if (cloudInOut != inOut && inOut == 'out') {
+        movementSpeed += 0.05;
+      }
+    }, 1000/60);
+  } else if(cloudInOut != inOut && inOut == 'out') {
     cloudInOut = inOut;
     clearInterval(fadeIn);
 
     fadeOut = setInterval(function() {
-      if (cloudInOut == 'in' || cloud.alpha <= 0) {
+      if(cloudInOut == 'in' || cloud.alpha <= 0) {
         cloudInOut = null;
         clearInterval(fadeOut);
-      } else
+      } else {
         cloud.alpha -= 0.1;
-    }, 1000/30);
+        movementSpeed -= 0.05;
+      }
+    }, 1000/60);
   }
 }
 
 function consoleLog(message) {
-  if (displayLog)
+  if(displayLog)
     console.log(message);
 }

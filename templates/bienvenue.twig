@@ -6,6 +6,7 @@
     <title>NewsMap - Bienvenue</title>
     <link rel='stylesheet' href='styles/common.css'>
     <link rel='stylesheet' href='/styles/bienvenue.css'>
+    <script type='text/javascript' src='/scripts/jquery-3.2.1.min.js'></script>
   </head>
 
   <body>
@@ -34,9 +35,9 @@
         </p>
         <h3>Bonne visite !</h3>
         <input id='directMap' type='checkbox' name='directMap' {% if skipBienvenue == 'true' %}checked{% endif %}>
-        <label id="choix" for="directMap">Je veux commencer directement sur la carte la prochaine fois.</label>
+        <label id='choix' for='directMap'>Je veux commencer directement sur la carte la prochaine fois.</label>
 
-        <div id="toast">
+        <div id='toast'>
           Votre choix à bien été pris en compte
         </div>
       </div>
@@ -50,26 +51,17 @@
     <div id='color'></div>
 
     <script>
-      document.getElementById('directMap').addEventListener("change", function() {
+      document.getElementById('directMap').addEventListener('change', function() {
         if(directMap.checked)
-          setCookie("skipBienvenue", true, 365*2);
+          setCookie('skipBienvenue', true, 365*2);
         else
-          setCookie("skipBienvenue", false, 365*2);
+          setCookie('skipBienvenue', false, 365*2);
+        $('#toast').fadeIn(500).delay(2000).fadeOut(1000);
       });
     </script>
 
     <script type='text/javascript' src='/scripts/cookies.js'></script>
-    <script type='text/javascript' src='/scripts/filters.js'></script><script type="text/javascript" src="/scripts/jquery-3.2.1.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-        $("[name=directMap]").change(function(){
-          $('#toast').fadeIn(2000, function(){
-            $('#toast').fadeOut(2000);
-          });
-        });
-      });
-    </script>
+    <script type='text/javascript' src='/scripts/filters.js'></script>
   </body>
 
 </html>
