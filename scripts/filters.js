@@ -62,12 +62,12 @@ function switchButton(filterButton, id)
 	if(!filterButton)
 	{
 		filterButton=true;
-		setCookie(id,1,7);
+		setCookie(id,1,365*2);
 	}
 	else
 	{
 		filterButton=false;
-		setCookie(id,0,7);
+		setCookie(id,0,365*2);
 	}
 
 	return filterButton;
