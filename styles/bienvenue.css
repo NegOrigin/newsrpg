@@ -7,19 +7,14 @@
 
 #content .left {
   width: 52vw;
-  text-align: center;
 }
 
-/*#content .right {
-    float: left;
-}*/
-
 #toast {
-    display: none;
-    margin: auto;
-    padding: 5px;
-    background-color: #898d89;
-    text-align: center;
-    width: inherit;
-    height: auto;
+  display: none;
+  margin: auto;
+  padding: 5px;
+  background-color: #898d89;
+  text-align: center;
+  width: inherit;
+  height: auto;
 }

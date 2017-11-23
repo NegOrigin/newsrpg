@@ -9,29 +9,7 @@
   </head>
 
   <body>
-    <div id='title'>
-      <div class='left'>
-        <h1>NewsMap</h1>
-      </div>
-    </div>
-
-    <div id='menu'>
-      <div class='left'>
-        <ul id='pages'>
-          <li><a href='/bienvenue'><img src='/images/iconHome.png' alt='Accueil'></a></li>
-          <li><a href='/map'><img src='/images/iconCompass.png' alt='Carte du monde'></a></li>
-        </ul>
-      </div>
-
-      <div class='right'>
-        <ul id='filters'>
-          <li><p id='filterPolitique'>Politique</p></li>
-          <li><p id='filterSport'>Sport</p></li>
-          <li><p id='filterSciences'>Sciences</p></li>
-          <li><p id='filterEconomie'>Economie</p></li>
-        </ul>
-      </div>
-    </div>
+    {% include 'header.html' %}
 
     <div id='content'>
       <div id='reference'>
@@ -55,13 +33,7 @@
       </div>
     </div>
 
-    <div id='footer'>
-      <div class='left'>
-        <a href='#'>Qui sommes-nous ?</a>
-        <a href='/reference'>Réferences</a>
-        <a href='#'>Nous contacter</a>
-      </div>
-    </div>
+    {% include 'footer.html' %}
 
     <div id="color"></div>
 
