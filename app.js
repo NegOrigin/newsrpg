@@ -50,6 +50,12 @@ app.get('/reference', function(req, res) {
   res.render('reference.twig');
 });
 
+// Gestion qui somes nous
+app.get('/aboutus', function(req, res) {
+  // Rendu de reference.twig
+  res.render('aboutus.twig');
+});
+
 // Gestion 404
 app.use(function(req, res, next){
   // Définition du code d'erreur
