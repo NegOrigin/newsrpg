@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang='fr'>
   <head>
     <meta charset='utf-8'/>
@@ -15,4 +15,42 @@
       document.querySelector('button').addEventListener('click', function(e) { window.location = '/' });
     </script>
   </body>
+</html>-->
+
+<!doctype html>
+<html lang='fr'>
+
+  <head>
+    <meta charset='utf-8'>
+    <title>NewsMap - 404</title>
+    <link rel='stylesheet' href='styles/common.css'>
+    <link rel='stylesheet' href='styles/404.css'>
+  </head>
+
+  <body>
+    {% include 'header.html' %}
+
+    <div id='content'>
+      <div class='left'>
+        <p>
+          Que faites-vous là ?<br />
+          Cette adresse n'est pourtant sur aucune carte.
+        </p>
+        <p>
+          Cliquez sur la boussole en haut de la page pour retrouver votre chemin.
+        </p>
+      </div>
+      <div class='right'>
+        <h2>404</h2>
+      </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <div id='color'></div>
+
+    <script type='text/javascript' src='/scripts/cookies.js'></script>
+    <script type='text/javascript' src='/scripts/filters.js'></script>
+  </body>
+
 </html>

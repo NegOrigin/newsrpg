@@ -1,44 +1,42 @@
-#reference {
-	height: 60vh;
-	margin: 10vh 4vw;
+#content {
+  margin: 5vh 4vw;
+  height: 60vh;
 }
 
-#reference .right {
-	float: left;
+#content .left {
+  width: 54vw;
+	text-align: right;
+}
+
+#content .right {
 	text-align: left;
-	margin-left: 8vw;
+	margin-top: -38.5vh;
 }
 
-#reference .right p {
+#content .left p {
+	height: 4vh;
+	font-size: 2.5vh;
+}
+
+#content .right p {
 	height: 4vh;
 	font-size: 2vh;
 	margin-top: 2.6vh;
 }
 
-#reference .left {
-	float: left;
-	text-align: right;	
-	width: 54vw;
-}
-
-#reference .left p {
-	height: 4vh;
-	font-size: 2.5vh;
-}
-
-#reference a:link {
+#content a:link {
 	color: black;
 	text-decoration: none;
 }
 
-#reference a:visited {
+#content a:visited {
 	color: black;
 }
 
-#reference a:hover {
+#content a:hover {
 	text-decoration: underline;
 }
 
-#reference h2 {
+#content h2 {
 	font-size: 3vh;
 }

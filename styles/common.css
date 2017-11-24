@@ -27,6 +27,11 @@ body::after {
   width: 62vw;
 }
 
+.right {
+  text-align: center;
+  margin-left: 62vw;
+}
+
 /*TITLE*/
 
 #title {
