@@ -103,6 +103,7 @@ body::after {
 }
 
 #menu li.filters {
+  height: 4.6vh;
   padding: 0 1.5vh;
 }
 

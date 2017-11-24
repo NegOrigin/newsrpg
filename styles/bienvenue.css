@@ -25,6 +25,7 @@
 }
 
 #toast {
+  float: left;
   display: none;
   margin: auto;
   padding: 5px;
@@ -32,4 +33,23 @@
   text-align: center;
   width: inherit;
   height: auto;
+}
+
+#screenshot #SScharacter {
+  width: 4vw;
+  padding-bottom: 2.5vw;
+}
+
+#screenshot #SSmap {
+  width: 20vw;
+  margin-left: 2vw;
+}
+
+#screenshot #SSfilter {
+  width: 24vw;
+  margin-top: 5vh;
+}
+
+#screenshot {
+  margin-top: -47vh;
 }

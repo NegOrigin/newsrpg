@@ -74,11 +74,13 @@ function checkButton(filterButton, id)
 {
 	if(!filterButton)
 	{
-		document.getElementById(id).style.textShadow="1px 1px 2px Crimson";
+		document.getElementById(id).style.borderBottom="solid crimson 0.4vh";
+		//document.getElementById(id).style.textShadow="1px 1px 2px Crimson";
 	}
 	else
 	{
-		document.getElementById(id).style.textShadow="1px 1px 2px Chartreuse";
+		document.getElementById(id).style.borderBottom="solid Chartreuse 0.4vh";
+		//document.getElementById(id).style.textShadow="1px 1px 2px Chartreuse";
 	}
 }
 

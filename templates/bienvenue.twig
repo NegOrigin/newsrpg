@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <title>NewsMap - Bienvenue</title>
-    <link rel='stylesheet' href='styles/common.css'>
+    <link rel='stylesheet' href='/styles/common.css'>
     <link rel='stylesheet' href='/styles/bienvenue.css'>
     <script type='text/javascript' src='/scripts/jquery-3.2.1.min.js'></script>
   </head>
@@ -22,10 +22,10 @@
         <p>
           Vous incarnerez un voyageur qui se déplace de pays en pays sur la carte du monde.<br />
           Pour cela c'est très simple, utilisez les flèches directionnelles, ZQSD ou WASD pour voyager.<br />
-          Lorsqu'il arrive sur un pays, son nom apparait alors à droite de la carte, et juste en dessous du nom, vous pourrez choisir parmis une liste d'article qui concernent ce pays !
+          Lorsqu'il arrive sur un pays, son nom apparait alors à droite de la carte, et juste en dessous du nom, vous pourrez choisir parmis une liste d'articles qui concernent ce pays !
         </p>
         <p>
-          Si certains types d'articles ne vous intéressent pas, pas d'inquiétude !<br />
+          Si certains types d'article ne vous intéressent pas, pas d'inquiétude !<br />
           Vous pouvez filtrer le contenu des articles avec les boutons en haut de la page.<br />
           Votre choix sera même conservé pour votre prochaine visite.
         </p>
@@ -40,10 +40,14 @@
           Votre choix à bien été pris en compte
         </div>
       </div>
-      <!--<div class='right'>
-          <p>SOME SCREENSHOTS MOFO</p>
-      </div>-->
+      <div class='right' id='screenshot'>
+        <img src="/images/screenshot/character.png" alt="voyageur" id="SScharacter"> 
+        <img src="/images/screenshot/map.png" alt="carte" id="SSmap">
+        <img src="/images/screenshot/filter.jpg" alt="filtres" id="SSfilter">
+      </div>
     </div>
+
+    
 
     {% include 'footer.html' %}
 
