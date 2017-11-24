@@ -1,12 +1,27 @@
 /*WELCOME PAGE*/
 
 #content {
-  margin: 10vh 5vw;
+  margin: 5vh 4vw;
   height: 60vh;
 }
 
 #content .left {
-  width: 52vw;
+  width: 54vw;
+}
+
+#content h2 {
+  text-align: left;
+  font-size: 3vh;
+}
+
+#content p {
+  text-align: left;
+  font-size: 2vh;
+}
+
+#content h3 {
+  margin-top: 5vh;
+  font-size: 2.5vh;
 }
 
 #toast {

@@ -29,29 +29,25 @@ function launch()
 	document.getElementById('filterPolitique').addEventListener("click", function() {
 		filter['politique']=switchButton(filter['politique'], 'filterPolitique');
 		checkButton(filter['politique'], 'filterPolitique');
-		emptyNewsList();
-		chooseArticleContent();
+		displayArticles()
 	});
 
 	document.getElementById('filterSport').addEventListener("click", function() {
 		filter['sport']=switchButton(filter['sport'], 'filterSport');
 		checkButton(filter['sport'], 'filterSport');
-		emptyNewsList();
-		chooseArticleContent();
+		displayArticles()
 	});
 
 	document.getElementById('filterSciences').addEventListener("click", function() {
 		filter['sciences']=switchButton(filter['sciences'], 'filterSciences');
 		checkButton(filter['sciences'], 'filterSciences');
-		emptyNewsList();
-		chooseArticleContent();
+		displayArticles()
 	});
 
 	document.getElementById('filterEconomie').addEventListener("click", function() {
 		filter['economie']=switchButton(filter['economie'], 'filterEconomie');
 		checkButton(filter['economie'], 'filterEconomie');
-		emptyNewsList();
-		chooseArticleContent();
+		displayArticles()
 	});
 
 }
@@ -110,5 +106,13 @@ function updateFilterVar()
 		filter['economie']=true;
 }
 
+function displayArticles()
+{
+  if(window.location.href.substr(window.location.href.lastIndexOf('/') + 1) === 'map')
+  {
+    emptyNewsList();
+		chooseArticleContent();
+  }
+}
 
 launch();
