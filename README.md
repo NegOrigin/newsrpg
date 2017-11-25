@@ -5,7 +5,7 @@ Projet réalisé dans le cadre du cours Web Sémantique.
 ## Equipe
 
 Raphael Almeida  
-Corentin Frery
+Corentin Frery  
 Nicolas Leroy
 
 ## Installation
