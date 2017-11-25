@@ -19,3 +19,9 @@ Pour installer les dépendences, taper dans un terminal :
 Pour lancer le projet, taper dans un terminal :
 
     npm start
+
+## Hébergement
+
+Le projet est hébergé sur <https://heroku.com>.
+
+Lien du projet : <https://newsrpg.herokuapp.com/>
