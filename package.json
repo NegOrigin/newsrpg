@@ -7,20 +7,20 @@
   "homepage": "",
   "version": "0.1.0",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/NegOrigin/newsrpg.git"
+    "type": "git",
+    "url": "https://github.com/NegOrigin/newsrpg.git"
   },
   "dependencies": {
-    "express": "^4.14",
     "body-parser": "^1.16",
     "cookie-parser": "^1.4",
-    "express-session": "^1.15",
     "cookie-session": "^1.1",
-    "serve-static": "^1.11",
     "csurf": "^1.9",
+    "express": "^4.14",
+    "express-session": "^1.15",
+    "nodemon": "^1.11",
     "serve-favicon": "^2.3",
-    "twig": "^0.10",
-    "nodemon": "^1.11"
+    "serve-static": "^1.11",
+    "twig": "^0.10"
   },
   "engines": {
     "node": ">=0.10"

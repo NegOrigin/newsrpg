@@ -407,64 +407,64 @@ function outOfBounds(x, y) {
 
 function testPosition(x, y) {
   if(Canada.contains(x, y)) {
-    changeCountry("Canada");
+    changeCountry("Canada", "ca");
   } else if(France.contains(x, y) || France2.contains(x, y)) {
-    changeCountry("France");
+    changeCountry("France", "fr");
   } else if(RoyaumeUni.contains(x, y)) {
-    changeCountry("Royaume-Uni");
+    changeCountry("Royaume-Uni", "gb");
   } else if(Espagne.contains(x, y)) {
-    changeCountry("Espagne");
+    changeCountry("Espagne", "es");
   } else if(Portugal.contains(x, y)) {
-    changeCountry("Portugal");
+    changeCountry("Portugal", null);
   } else if(EtatsUnis.contains(x, y) || EtatsUnis2.contains(x, y)) {
-    changeCountry("Etats-Unis");
+    changeCountry("Etats-Unis", "us");
   } else if(Irlande.contains(x, y)) {
-    changeCountry("Irlande");
+    changeCountry("Irlande", "ie");
   } else if(Danemark.contains(x, y) || Danemark2.contains(x, y)) {
-    changeCountry("Danemark");
+    changeCountry("Danemark", null);
   } else if(Belgique.contains(x, y)) {
-    changeCountry("Belgique");
+    changeCountry("Belgique", null);
   } else if(PaysBas.contains(x, y)) {
-    changeCountry("Pays-Bas");
+    changeCountry("Pays-Bas", "nl");
   } else if(Allemagne.contains(x, y)) {
-    changeCountry("Allemagne");
+    changeCountry("Allemagne", "de");
   } else if(Suisse.contains(x, y)) {
-    changeCountry("Suisse");
+    changeCountry("Suisse", null);
   } else if(Italie.contains(x, y) || Italie2.contains(x, y)) {
-    changeCountry("Italie");
+    changeCountry("Italie", "it");
   } else if(Mexique.contains(x, y)) {
-    changeCountry("Mexique");
+    changeCountry("Mexique", null);
   } else if(Bresil.contains(x, y)) {
-    changeCountry("Brésil");
+    changeCountry("Brésil", "br");
   } else if(Luxembourg.contains(x, y)) {
-    changeCountry("Luxembourg");
+    changeCountry("Luxembourg", null);
   } else if(Russie.contains(x, y)) {
-    changeCountry("Russie");
+    changeCountry("Russie", "ru");
   } else if(Inde.contains(x, y)) {
-    changeCountry("Inde");
+    changeCountry("Inde", "in");
   } else if(Japon.contains(x, y)) {
-    changeCountry("Japon");
+    changeCountry("Japon", null);
   } else if(CoreeDuSud.contains(x, y)) {
-    changeCountry("Corée du Sud");
+    changeCountry("Corée du Sud", null);
   } else if(CoreeDuNord.contains(x, y)) {
-    changeCountry("Corée du Nord");
+    changeCountry("Corée du Nord", null);
   } else if(Chine.contains(x, y)) {
-    changeCountry("Chine");
+    changeCountry("Chine", "cn");
   } else {
-    changeCountry("CAKE");
+    changeCountry("CAKE", null);
   }
 }
 
-function changeCountry(name) {
+function changeCountry(name, code) {
   consoleLog(name);
-  country = name;
+  country = {'name': name, 'code': code};
 
-  if(country === 'CAKE') {
+  if(country.name === 'CAKE') {
     cloudFade('in');
     document.getElementById('infoCountry').innerHTML = 'Pays non identifié';
   } else {
     cloudFade('out');
-    document.getElementById('infoCountry').innerHTML = country;
+    document.getElementById('infoCountry').innerHTML = country.name;
   }
 
   chooseArticleContent();
