@@ -39,7 +39,7 @@
   margin-bottom: 0.5vw;
   padding: 0.8vw;
   padding-bottom: 0.1vw;
-  border: 0.2vw solid black;
+  border: 0.2vw solid #454545;
   border-radius: 1vw;
   background: rgba(255,255,255,0.6);
   color: #454545;
@@ -47,6 +47,7 @@
 
 #newsList a:link {
   color: #454545;
+  font-size: 1vw;
   text-decoration: none;
 }
 

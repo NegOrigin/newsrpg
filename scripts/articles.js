@@ -6,25 +6,17 @@ function addArticle(title, text, url, date, source, color) {
 	var article = document.createElement('li');
 	article.className = 'article';
 	article.style = 'border-color:' + color + '';
-	if(date=="undefined" || date==null || date=="")
-	{
+	if(date=="undefined" || date==null || date=="") {
 		date="";
 		if(source!="undefined" || source==null || source=="")
-		{
 			date='(' + source + ')';
-		}
-	}
-	else
-	{
+	} else {
 		date=date.slice(0,10);
 		date='(' + source + " " + date + ')';
 	}
-	
 	contenuString = '<a href="' + url +'"';
 	if(url!="")
-	{
 		contenuString += ' target="_blank"';
-	}
 	contenuString += '> <p class="articleTitle">' + title + '</p> ' + date + ' <p> ' + text + ' </p> </a>';
 	article.innerHTML = contenuString;
  	document.getElementById('newsList').appendChild(article);
@@ -33,124 +25,98 @@ function addArticle(title, text, url, date, source, color) {
 //ajoute les articles sur la page
 function addArticles() {
 	sortResults('publishedAt');
-	//articleList=articleList.slice(0,20);
-	console.log(articleList);
-	console.log(articleList.length);
 	for(var i = 0; i < (articleList.length < 20 ? articleList.length : 20); i++) {
-		//console.log(articleList[i]);
 		addArticle(articleList[i].title, articleList[i].description, articleList[i].url, articleList[i].publishedAt, articleList[i].source, articleList[i].color);
 	}
-	if(articleList.length==0) {
-		addArticle("Pas d'article correspondant à ces catégories", "Désolé", "", "undefined", "undefined", "black");
-	}
-	console.log("end");
+	if(articleList.length==0)
+		addArticle("Désolé", "Nous n'avons pas d'article à vous proposer pour cette localisation dans les catégories sélectionnées.", "", "undefined", "undefined", "#454545");
 }
 
 function getArticles() {
 	emptyNewsList();
 	var checkSum=0;
 
-	if(country.code == null) { // Pays non identifié
-		addArticle('Désolé', "Pas de pays, pas d'article", "", "undefined", "undefined", "black");
-	}
+	if(country.code == null) // Pays non identifié
+		addArticle('Désolé', "Nous n'avons pas d'article à vous proposer pour cette localisation.", "", "undefined", "undefined", "#454545");
+
 	else {
 		//on verifie tous les filtres
-	    if(filter['economie']) {
+	    if(filter['economie'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=business&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'Gold'); });
-				checkSum++; 
-			});	
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['divertissement']) {
+				checkSum++;
+			});
+		else
+			checkSum++;
+		if(filter['divertissement'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=entertainment&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'DodgerBlue'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['gaming']) {
+		else
+			checkSum++;
+		if(filter['gaming'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=gaming&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'OrangeRed'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['general']) {
+		else
+			checkSum++;
+		if(filter['general'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=general&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'LightSalmon'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['sante']) {
+		else
+			checkSum++;
+		if(filter['sante'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=health-and-medical&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'DeepPink'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['musique']) {
+		else
+			checkSum++;
+		if(filter['musique'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=music&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'MediumAquaMarine'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['politique']) {
+		else
+			checkSum++;
+		if(filter['politique'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=politics&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'Crimson'); });
-				checkSum++; 
+				checkSum++;
 			});
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['sciences']) {
+		else
+			checkSum++;
+		if(filter['sciences'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=science-and-nature&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'LightSeaGreen'); });
-				checkSum++; 
-			});	
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['sport']) {
+				checkSum++;
+			});
+		else
+			checkSum++;
+		if(filter['sport'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=sport&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'Chartreuse'); });
-				checkSum++; 
-			});		
-		}
-		else{
-			checkSum++; 
-		}
-		if(filter['technologie']) {
+				checkSum++;
+			});
+		else
+			checkSum++;
+		if(filter['technologie'])
 			$.getJSON('https://newsapi.org/v2/top-headlines?category=technology&country='+ country.code +'&apiKey=c9443978d9c54b1e8232853ce181491c',function(data) {
 				data.articles.forEach(function (a) { addToList(a.title, a.publishedAt, a.source.name, a.description, a.url, 'CadetBlue'); });
-				checkSum++; 
-			});	
-		}
-		else{
-			checkSum++; 
-		}
-		
+				checkSum++;
+			});
+		else
+			checkSum++;
+
 		//on attend que toutes les catégories aient fini de récuperer les articles
-		waitUntil(function() { 
-			if (checkSum==10) return true; 
-			else {console.log(checkSum); return false;
-		}}, addArticles, 50); //quand c'est fini, on ajoute les articles à la page
+		waitUntil(function() {
+			if (checkSum==10) return true;
+			else return false;
+		}, addArticles, 10); //quand c'est fini, on ajoute les articles à la page
 	}
 }
 
@@ -168,9 +134,7 @@ function sortResults(prop) {
 //Ajoute le contenu d'un article à la liste des articles
 function addToList(title, publishedAt, source, description, url, color) {
 	if(description==null)
-	{
 		description="";
-	}
 	articleList[articleList.length]= { 'title' : title,  'publishedAt' : publishedAt, 'source' : source, 'description' : description, 'url' : url, 'color' : color};
 }
 
