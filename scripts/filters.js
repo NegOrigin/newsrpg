@@ -14,67 +14,68 @@ filter['technologie']=true;
 function launch() {
 	updateFilterVar();
 
-  checkButton(filter['economie'], 'filterEconomie');
-  checkButton(filter['divertissement'], 'filterDivertissement');
-  checkButton(filter['gaming'], 'filterGaming');
-  checkButton(filter['general'], 'filterGeneral');
-  checkButton(filter['sante'], 'filterSante');
-  checkButton(filter['musique'], 'filterMusique');
-  checkButton(filter['politique'], 'filterPolitique');
-  checkButton(filter['sciences'], 'filterSciences');
-  checkButton(filter['sport'], 'filterSport');
-  checkButton(filter['technologie'], 'filterTechnologie');
+  checkButton(filter['economie'], 'filterEconomie', 'Gold');
+  checkButton(filter['divertissement'], 'filterDivertissement', 'DodgerBlue');
+  checkButton(filter['gaming'], 'filterGaming', 'OrangeRed');
+  checkButton(filter['general'], 'filterGeneral', 'LightSalmon');
+  checkButton(filter['sante'], 'filterSante', 'DeepPink');
+  checkButton(filter['musique'], 'filterMusique', 'MediumAquaMarine');
+  checkButton(filter['politique'], 'filterPolitique', 'Crimson');
+  checkButton(filter['sciences'], 'filterSciences', 'LightSeaGreen');
+  checkButton(filter['sport'], 'filterSport', 'Chartreuse');
+  checkButton(filter['technologie'], 'filterTechnologie', 'CadetBlue');
 
 	//eventListener sur les boutons des filtres
+
 	document.getElementById('filterEconomie').addEventListener("click", function() {
 		filter['economie']=switchButton(filter['economie'], 'filterEconomie');
-		checkButton(filter['economie'], 'filterEconomie');
-		displayArticles()
+		checkButton(filter['economie'], 'filterEconomie', 'Gold');
+		displayArticles();
 	});
 	document.getElementById('filterDivertissement').addEventListener("click", function() {
 		filter['divertissement']=switchButton(filter['divertissement'], 'filterDivertissement');
-		checkButton(filter['divertissement'], 'filterDivertissement');
-		displayArticles()
+		checkButton(filter['divertissement'], 'filterDivertissement', 'DodgerBlue');
+		displayArticles();
 	});
 	document.getElementById('filterGaming').addEventListener("click", function() {
 		filter['gaming']=switchButton(filter['gaming'], 'filterGaming');
-		checkButton(filter['gaming'], 'filterGaming');
-		displayArticles()
+		checkButton(filter['gaming'], 'filterGaming', 'OrangeRed');
+		displayArticles();
 	});
 	document.getElementById('filterGeneral').addEventListener("click", function() {
 		filter['general']=switchButton(filter['general'], 'filterGeneral');
-		checkButton(filter['general'], 'filterGeneral');
-		displayArticles()
+		checkButton(filter['general'], 'filterGeneral', 'LightSalmon');
+		displayArticles();
 	});
 	document.getElementById('filterSante').addEventListener("click", function() {
 		filter['sante']=switchButton(filter['sante'], 'filterSante');
-		checkButton(filter['sante'], 'filterSante');
-		displayArticles()
+		checkButton(filter['sante'], 'filterSante', 'DeepPink');
+		displayArticles();
 	});
 	document.getElementById('filterMusique').addEventListener("click", function() {
 		filter['musique']=switchButton(filter['musique'], 'filterMusique');
-		checkButton(filter['musique'], 'filterMusique');
-		displayArticles()
+		checkButton(filter['musique'], 'filterMusique', 'MediumAquaMarine');
+		displayArticles();
 	});
 	document.getElementById('filterPolitique').addEventListener("click", function() {
 		filter['politique']=switchButton(filter['politique'], 'filterPolitique');
-		checkButton(filter['politique'], 'filterPolitique');
-		displayArticles()
+		checkButton(filter['politique'], 'filterPolitique', 'Crimson');
+		displayArticles();
 	});
 	document.getElementById('filterSciences').addEventListener("click", function() {
 		filter['sciences']=switchButton(filter['sciences'], 'filterSciences');
-		checkButton(filter['sciences'], 'filterSciences');
-		displayArticles()
+		checkButton(filter['sciences'], 'filterSciences', 'LightSeaGreen');
+		displayArticles();
 	});
 	document.getElementById('filterSport').addEventListener("click", function() {
 		filter['sport']=switchButton(filter['sport'], 'filterSport');
-		checkButton(filter['sport'], 'filterSport');
-		displayArticles()
+		checkButton(filter['sport'], 'filterSport', 'Chartreuse');
+		displayArticles();
 	});
 	document.getElementById('filterTechnologie').addEventListener("click", function() {
 		filter['technologie']=switchButton(filter['technologie'], 'filterTechnologie');
-		checkButton(filter['technologie'], 'filterTechnologie');
-		displayArticles()
+		checkButton(filter['technologie'], 'filterTechnologie', 'CadetBlue');
+		displayArticles();
 	});
 }
 
@@ -92,11 +93,11 @@ function switchButton(filterButton, id) {
 }
 
 //met à jour le css d'un bouton
-function checkButton(filterButton, id) {
+function checkButton(filterButton, id, color) {
 	if(!filterButton)
-    document.getElementById(id).style.borderBottom="solid crimson 0.4vh";
+    	document.getElementById(id).style.borderBottom="solid grey 0.4vh";
 	else
-		document.getElementById(id).style.borderBottom="solid Chartreuse 0.4vh";
+		document.getElementById(id).style.borderBottom="solid " + color + " 0.4vh";
 }
 
 //récupère les cookies et met à jour les var globales
@@ -145,8 +146,8 @@ function updateFilterVar() {
 
 function displayArticles() {
   if(window.location.href.substr(window.location.href.lastIndexOf('/') + 1) === 'map') {
-    emptyNewsList();
-		chooseArticleContent();
+  	console.log("plop");
+	getArticles();
   }
 }
 

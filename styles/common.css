@@ -156,6 +156,10 @@ body::after {
   text-decoration: none;
 }
 
+#footer .right {
+  margin-top: -5.9vh;
+}
+
 /*COLOR*/
 
 #color::after {
