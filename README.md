@@ -1,4 +1,4 @@
-# Projet 8INF911 : InfoRPG
+# Projet 8INF911 : NewsRPG
 
 Projet réalisé dans le cadre du cours Web Sémantique.
 
